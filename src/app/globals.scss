@@ -1,0 +1,186 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "~swiper/css/bundle";
+@import "~swiper/css/effect-fade";
+
+@font-face {
+	font-family: "SculpinBold";
+	src: url("/Sculpin-Bold.woff");
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: "HumaneMedium";
+	src: url("/Humane-Medium.woff2");
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: "HumaneBold";
+	src: url("/Humane-Bold.woff");
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: "ApfelGrotezk";
+	src: url("/ApfelGrotezk-Regular.woff");
+	font-weight: normal;
+	font-style: normal;
+}
+
+// TAILWIND:BASE
+@layer base {
+	html {
+		@apply scroll-smooth tracking-tight leading-normal;
+	}
+	body {
+		@apply antialiased flex flex-col min-h-screen bg-neutral;
+	}
+	main {
+		@apply flex-grow;
+	}
+	a {
+		transition: 0.3s;
+	}
+	.button {
+		@apply inline-block rounded-none appearance-none outline-none bg-black text-white border border-black tracking-widest w-auto p-3 px-6 min-h-[48px] cursor-pointer transition-smooth supports-hover:hover:bg-white supports-hover:hover:text-black;
+		&[disabled] {
+			@apply pointer-events-none opacity-60;
+		}
+	}
+	.text-link {
+		@apply inline-block relative pb-1 overflow-hidden;
+		&:after {
+			content: "";
+			@apply h-[1px] w-full bg-black absolute bottom-[2px] left-0 transition-smooth;
+		}
+		@media (hover) {
+			&:hover:after {
+				@apply -translate-x-full;
+			}
+		}
+	}
+	.arrow-link {
+		@apply inline-flex font-heading-medium uppercase text-[clamp(40px,8vw,60px)] leading-[.75];
+	}
+	.kill-transform {
+		transform: none !important;
+	}
+	// TYPOGRAPHY
+	.headline {
+		@apply font-heading-bold uppercase text-[clamp(60px,10vw,100px)] leading-[.75];
+		&-60 {
+			@apply font-heading-bold uppercase text-[clamp(40px,8vw,60px)] leading-[.75];
+		}
+		&-80 {
+			@apply font-heading-bold uppercase text-[clamp(50px,9vw,80px)] leading-[.75];
+		}
+		&-160 {
+			@apply font-heading-bold uppercase text-[clamp(80px,16vw,160px)] leading-[.75];
+			&-stroke {
+				@apply font-heading-bold uppercase text-[clamp(80px,16vw,160px)] leading-[.75] text-transparent;
+				-webkit-text-stroke-width: clamp(.5px,.1vw,1px);
+				-webkit-text-stroke-color: theme('colors.black');	
+				&.text-white {
+					color: transparent;
+					-webkit-text-stroke-color: theme('colors.white');	
+				}			
+			}
+		}
+		&-massive {
+			@apply font-heading-bold uppercase text-[clamp(200px,40vw,400px)] leading-[.75] text-transparent;
+			-webkit-text-stroke-width: clamp(.25px,.35vw,2px);
+			-webkit-text-stroke-color: theme('colors.black');	
+			&.text-white {
+				color: transparent;
+				-webkit-text-stroke-color: theme('colors.white');	
+			}					
+		}
+	}
+	.text-body-large {
+		@apply font-sans text-20;
+	}  
+	.text-body-small {
+		@apply font-sans text-14;
+	}  
+	.caps {
+		@apply font-eyebrow text-14 tracking-wide uppercase;
+		&-12 {
+			@apply font-eyebrow text-12 tracking-wide uppercase;
+		}
+	}
+}
+
+// TAILWIND:UTILITIES
+@layer utilities {
+	.container-base {
+		width: 100%;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.container {
+		@apply container-base px-6;
+		max-width: 1440px;
+		&-full {
+			@apply container-base px-6;
+			max-width: 100%;
+		}
+		&-1280 {
+			@apply container-base px-6;
+			max-width: 1280px;
+		}
+		&-1060 {
+			@apply container-base px-6;
+			max-width: 1060px;
+		}
+		&-960 {
+			@apply container-base px-6;
+			max-width: 960px;
+		}
+		&-768 {
+			@apply container-base px-6;
+			max-width: 768px;
+		}
+		&-700 {
+			@apply container-base px-6;
+			max-width: 700px;
+		}
+	}
+	.absolute-center {
+		@apply absolute top-1/2 -translate-y-1/2;
+	}
+	.invisible {
+		opacity: 0;
+		visibility: hidden;
+	}
+	.visible {
+		opacity: 1;
+		visibility: visible;
+	}
+	.transition-smooth {
+		transition: 0.3s;
+	}
+	.grid-layout {
+		@apply grid grid-cols-12 w-full md:grid-cols-10;
+	}
+}
+
+//MASONRY
+.react-photo-album--photo {
+  // @apply border border-white;
+}
+
+// CUSTOM SCROLLBAR
+*::-webkit-scrollbar {
+	width: 0.2em;
+}
+*::-webkit-scrollbar-track {
+	box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+*::-webkit-scrollbar-thumb {
+	background-color: #000000;
+	outline: 0px solid #000000;
+	width: 0.1em;
+}
