@@ -64,6 +64,21 @@
 	}
 	.arrow-link {
 		@apply inline-flex font-heading-medium uppercase text-[clamp(40px,8vw,60px)] leading-[.75];
+		&:after {
+			content: "";
+			background-image: url("data:image/svg+xml,%3Csvg width='46' height='42' viewBox='0 0 46 42' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8.625 7.875V10.5H32.4731L8.625 32.2744L10.6519 34.125L34.5 12.3506V34.7812H37.375V7.875H8.625Z' fill='%232C2C2C'/%3E%3C/svg%3E%0A");
+			background-size: 53px;
+			@apply inline-block ml-2 w-12 h-12 bg-no-repeat bg-center relative bottom-1 transition-smooth;
+			@screen md {
+				background-size: 43px;	
+				@apply bottom-3;
+			}
+		}
+		@media (hover){
+			&:hover:after {
+				@apply rotate-[41.5deg];
+			}
+		}
 	}
 	.kill-transform {
 		transform: none !important;
