@@ -38,10 +38,10 @@ const ProjectCarousel = ({ data }) => {
 							return (
 								<SwiperSlide key={item._id} className="md:overflow-hidden">
 									<Blob className="absolute z-10 -top-32 left-0 w-[60vw] md:w-[100vw] md:-left-32" />
-									<div className="grid grid-cols-11 md:grid-cols-10 md:min-h-[800px]">
-										<div className="col-start-2 col-span-2 -mr-[20vw] pt-32 md:-mr-[32vw]">
+									<div className="grid grid-cols-11 md:grid-cols-10 md:min-h-[750px]">
+										<div className="col-start-2 col-span-2 -mr-[20vw] pt-32 md:mr-0 md:col-end-10">
 											<div className="relative z-10 space-y-4">
-												<h1 class="headline-160 max-w-lg">
+												<h1 class="headline-160 max-w-lg sm:max-w-[260px]">
 													{item.title}
 												</h1>
 												{item.description?.length ? (
