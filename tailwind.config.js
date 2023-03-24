@@ -11,7 +11,7 @@ module.exports = {
 	corePlugins: {
 		container: false,
 	},
-	darkMode: false,
+	darkMode: "class",
 	theme: {
 		fontFamily: {
 			'sans': ['ApfelGrotezk', ...defaultTheme.fontFamily.sans],

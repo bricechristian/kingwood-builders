@@ -1,8 +1,10 @@
+
 import Link from "next/link";
 import Image from "next/image";
 import { groq } from "next-sanity";
 import { client } from "../../../../lib/sanity.client";
 
+import DarkModeToggle from "./darkModeToggle";
 import HamburgerDiamond from "../../../../public/hamburger-diamond.svg";
 import Wordmark from "../../../../public/wordmark.svg";
 
@@ -40,10 +42,10 @@ const Header = async () => {
 				</div>
 				<ul className="col-start-11 flex justify-end gap-6 -mr-12 md:-mr-10 md:col-start-9 sm:-mr-8">
 					<li className="headline-60 flex items-center">
-						<span className="mr-2">MENU</span>
-						<span>
-							<HamburgerDiamond className="w-[26px] h-[26px] relative bottom-1" />
+						<span class="mr-2">
+							<DarkModeToggle />
 						</span>
+						<span>MENU</span>
 					</li>
 					{/* {nav.menuItems.map((item) => {
 							return (

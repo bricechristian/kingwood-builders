@@ -3,7 +3,7 @@ import { groq } from "next-sanity";
 import { client } from "lib/sanity.client";
 import imageUrlBuilder from "@sanity/image-url";
 
-import Header from "./components/Header";
+import { Providers } from './providers'
 import Footer from "./components/Footer";
 
 const query = groq`
@@ -47,25 +47,24 @@ export async function generateMetadata() {
 
 export default async function RootLayout({ children }) {
 	return (
-		<html lang="en">
+		<html lang="en" suppressHydrationWarning>
 			<body>
-				<Header />
 				<main>
 					<div className="grid-layout fixed z-[999] w-full h-full inset-0 pointer-events-none">
-						<div className="w-px h-full bg-[rgba(44,44,44,.15)]"></div>
-						<div className="w-px h-full bg-[rgba(44,44,44,.15)]"></div>
-						<div className="w-px h-full bg-[rgba(44,44,44,.15)]"></div>
-						<div className="w-px h-full bg-[rgba(44,44,44,.15)]"></div>
-						<div className="w-px h-full bg-[rgba(44,44,44,.15)]"></div>
-						<div className="w-px h-full bg-[rgba(44,44,44,.15)]"></div>
-						<div className="w-px h-full bg-[rgba(44,44,44,.15)]"></div>
-						<div className="w-px h-full bg-[rgba(44,44,44,.15)]"></div>
-						<div className="w-px h-full bg-[rgba(44,44,44,.15)]"></div>
-						<div className="w-px h-full bg-[rgba(44,44,44,.15)]"></div>
-						<div className="w-px h-full bg-[rgba(44,44,44,.15)] md:hidden"></div>
-						<div className="w-px h-full bg-[rgba(44,44,44,.15)] md:hidden"></div>
+						<div className="w-px h-full bg-[rgba(44,44,44,.15)] dark:bg-[rgba(255,255,255,0.15)]"></div>
+						<div className="w-px h-full bg-[rgba(44,44,44,.15)] dark:bg-[rgba(255,255,255,0.15)]"></div>
+						<div className="w-px h-full bg-[rgba(44,44,44,.15)] dark:bg-[rgba(255,255,255,0.15)]"></div>
+						<div className="w-px h-full bg-[rgba(44,44,44,.15)] dark:bg-[rgba(255,255,255,0.15)]"></div>
+						<div className="w-px h-full bg-[rgba(44,44,44,.15)] dark:bg-[rgba(255,255,255,0.15)]"></div>
+						<div className="w-px h-full bg-[rgba(44,44,44,.15)] dark:bg-[rgba(255,255,255,0.15)]"></div>
+						<div className="w-px h-full bg-[rgba(44,44,44,.15)] dark:bg-[rgba(255,255,255,0.15)]"></div>
+						<div className="w-px h-full bg-[rgba(44,44,44,.15)] dark:bg-[rgba(255,255,255,0.15)]"></div>
+						<div className="w-px h-full bg-[rgba(44,44,44,.15)] dark:bg-[rgba(255,255,255,0.15)]"></div>
+						<div className="w-px h-full bg-[rgba(44,44,44,.15)] dark:bg-[rgba(255,255,255,0.15)]"></div>
+						<div className="w-px h-full bg-[rgba(44,44,44,.15)] dark:bg-[rgba(255,255,255,0.15)] md:hidden"></div>
+						<div className="w-px h-full bg-[rgba(44,44,44,.15)] dark:bg-[rgba(255,255,255,0.15)] md:hidden"></div>
 					</div>
-					{children}
+					<Providers>{children}</Providers>
 				</main>
 				<Footer />
 			</body>

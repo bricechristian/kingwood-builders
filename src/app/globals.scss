@@ -36,7 +36,7 @@
 		@apply scroll-smooth tracking-tight leading-normal;
 	}
 	body {
-		@apply antialiased flex flex-col min-h-screen bg-neutral;
+		@apply antialiased flex flex-col min-h-screen text-black dark:text-white bg-neutral dark:bg-black;
 	}
 	main {
 		@apply flex-grow;
@@ -70,14 +70,19 @@
 			background-size: 53px;
 			@apply inline-block ml-2 w-12 h-12 bg-no-repeat bg-center relative bottom-1 transition-smooth;
 			@screen md {
-				background-size: 43px;	
+				background-size: 43px;
 				@apply bottom-3;
 			}
 		}
-		@media (hover){
+		@media (hover) {
 			&:hover:after {
 				@apply rotate-[41.5deg];
 			}
+		}
+	}
+	html.dark {
+		.arrow-link:after {
+			background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 46 42'%3E%3Cpath fill='%23fff' d='M8.625 7.875V10.5h23.848L8.625 32.274l2.027 1.851L34.5 12.351v22.43h2.875V7.875H8.625Z'/%3E%3C/svg%3E");
 		}
 	}
 	.kill-transform {
@@ -96,30 +101,30 @@
 			@apply font-heading-bold uppercase text-[clamp(80px,16vw,160px)] leading-[.75];
 			&-stroke {
 				@apply font-heading-bold uppercase text-[clamp(80px,16vw,160px)] leading-[.75] text-transparent;
-				-webkit-text-stroke-width: clamp(.5px,.1vw,1px);
-				-webkit-text-stroke-color: theme('colors.black');	
+				-webkit-text-stroke-width: clamp(0.5px, 0.1vw, 1px);
+				-webkit-text-stroke-color: theme("colors.black");
 				&.text-white {
 					color: transparent;
-					-webkit-text-stroke-color: theme('colors.white');	
-				}			
+					-webkit-text-stroke-color: theme("colors.white");
+				}
 			}
 		}
 		&-massive {
 			@apply font-heading-bold uppercase text-[clamp(200px,40vw,400px)] leading-[.75] text-transparent;
-			-webkit-text-stroke-width: clamp(.25px,.35vw,2px);
-			-webkit-text-stroke-color: theme('colors.black');	
+			-webkit-text-stroke-width: clamp(0.25px, 0.35vw, 2px);
+			-webkit-text-stroke-color: theme("colors.black");
 			&.text-white {
 				color: transparent;
-				-webkit-text-stroke-color: theme('colors.white');	
-			}					
+				-webkit-text-stroke-color: theme("colors.white");
+			}
 		}
 	}
 	.text-body-large {
 		@apply font-sans text-20;
-	}  
+	}
 	.text-body-small {
 		@apply font-sans text-14;
-	}  
+	}
 	.caps {
 		@apply font-eyebrow text-14 tracking-wide uppercase;
 		&-12 {
@@ -184,7 +189,7 @@
 
 //MASONRY
 .react-photo-album--photo {
-  // @apply border border-white;
+	// @apply border border-white;
 }
 
 // CUSTOM SCROLLBAR

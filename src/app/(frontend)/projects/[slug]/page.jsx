@@ -36,7 +36,7 @@ export async function generateMetadata({params}) {
 	const site = await client.fetch(siteQuery);
 	return { 
 		title: data.settings?.ogTitle.length ? data.settings.ogTitle : `${data.title} | Projects | ${site.site_title}`,
-		description: data.settings?.ogDescription.length ? data.settings.ogDescription : data.site_description,
+		description: data.settings?.ogDescription.length ? data.settings.ogDescription : site.site_description,
 		openGraph: {
 			title: data.settings?.ogTitle.length ? data.settings.ogTitle : `${data.title} | Projects | ${site.site_title}`,
 			description: data.settings?.ogDescription.length ? data.settings.ogDescription : site.site_description,
