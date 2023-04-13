@@ -26,6 +26,11 @@ const featuredImage = content[0].images[0];
 	section {
 		min-height: 600px;
 	}
+	@media (max-width: 479px) and (orientation: portrait){
+		section {
+			min-height: auto;
+		}
+	}
 	@media (min-height: 600px) and (orientation: landscape){
 		section {
 			min-height: 800px;
