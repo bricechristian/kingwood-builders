@@ -1,5 +1,9 @@
 import { inView, animate } from "motion";
 
+if(navigator.maxTouchPoints > 1){
+    document.body.classList.add("touchpoints");
+}
+
 //TYPOGRAPHY SHIFT
 if(document.querySelector(".typography-shift") !== null){
     document.querySelectorAll(".typography-shift").forEach(el => {
