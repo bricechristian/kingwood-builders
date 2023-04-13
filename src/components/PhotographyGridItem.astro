@@ -1,0 +1,106 @@
+---
+import { urlForImage } from '../utilities/sanityImage.js';
+
+const { item, itemWidth } = Astro.props;
+let imageAspectRatio;
+switch (itemWidth) {
+    case "md_min:col-span-2":
+        imageAspectRatio = "aspect-[4/5]";
+    break;
+    case "md_min:col-span-3":
+        imageAspectRatio = "aspect-[4/5]";
+    break;
+    case "md_min:col-span-4":
+        imageAspectRatio = "aspect-[4/5]";
+    break;
+    case "md_min:col-span-5":
+        imageAspectRatio = "aspect-[8/6]";
+    break;
+    case "md_min:col-span-6":
+        imageAspectRatio = "aspect-[75/42]";
+    break;
+    case "md_min:col-span-full":
+        imageAspectRatio = "aspect-video";
+    break;
+}
+const {photography} = item;
+// console.log(photography)
+---
+<style>
+    @media (hover){
+        .photography-grid-item.in-view img {
+            transition: .5s;
+        }
+        .photography-grid-item.in-view:hover img {        
+            transform: scale(1.05) !important;
+        }
+    }
+</style>
+<a 
+href={`/photography/${photography.slug.current}`}
+class={`photography-grid-item flex ${itemWidth} relative overflow-hidden group`}
+data-photography={photography.title}
+>
+    <div class={`${imageAspectRatio} flex relative overflow-hidden`}>
+        <div class="overlay absolute w-full h-full z-30 inset-0 translate-y-0 bg-black"></div>
+        <div class="bg-black opacity-0 absolute inset-0 z-10 transition duration-500 supports-hover:group-hover:opacity-40 md:opacity-40"></div>
+        <div class="absolute inset-0 z-20 flex items-center justify-center md_min:hidden">
+            <div class="flex items-center">
+                <div class="flex items-center justify-center w-10 h-10 border border-white rounded-full mr-2">
+                    <div class="w-6 h-6 bg-white rounded-full animate-pulser"></div>
+                </div>
+                <div class="headline text-20">{photography.title}</div>
+            </div>
+        </div>
+        <div class={`flex will-change-transform`}>
+            <picture>
+                <source
+                srcset={urlForImage(photography.featuredImage.asset)
+                    .format("webp")
+                    .quality(80)
+                    .url()}
+                type="image/webp"
+                media="(min-width: 1200px)"
+                />
+                <source
+                srcset={urlForImage(photography.featuredImage.asset)
+                .maxWidth(1200)
+                    .format("webp")
+                    .quality(80)
+                    .url()}
+                type="image/webp"
+                media="(min-width: 768px)"
+                />
+                <source
+                srcset={urlForImage(photography.featuredImage.asset)
+                .maxWidth(800)
+                    .format("webp")
+                    .quality(80)
+                    .url()}
+                type="image/webp"
+                media="(min-width: 479px)"
+                />
+                <source
+                srcset={urlForImage(photography.featuredImage.asset)
+                .maxWidth(500)
+                    .format("webp")
+                    .quality(60)
+                    .url()}
+                type="image/webp"
+                media="(max-width: 478px)"
+                />
+                <img
+                    class={`${imageAspectRatio} w-full h-full object-cover`}
+                    src={urlForImage(photography.featuredImage.asset).maxWidth(800).quality(80).url()}
+                    width="1920"
+                    height="1080"
+                    alt={photography.featuredImage.alt}
+                    srcset={`${urlForImage(photography.featuredImage.asset).maxWidth(800).quality(80).url()} 479w,
+                    ${urlForImage(photography.featuredImage.asset).maxWidth(1200).quality(80).url()} 768w,
+                    ${urlForImage(photography.featuredImage.asset).maxWidth(1920).quality(80).url()} 1200w`}                    
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 1400px, 1920px"                    
+                />
+              </picture>            
+        </div>
+    </div>
+</a>
