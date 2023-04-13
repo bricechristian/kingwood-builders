@@ -20,3 +20,19 @@ if(document.querySelector(".typography-shift") !== null){
         });        
     })
 }
+//SHIFT UP
+if(document.querySelector(".shift-up") !== null){
+    document.querySelectorAll(".shift-up").forEach(el => {
+        let delay = 0;
+        if(el.getAttribute("data-delay")){
+            delay = Number(el.getAttribute("data-delay"));
+        }
+        inView(el, ({ target }) => {
+            animate(
+                target,
+                { y: ["100%", "0"], opacity: ["0", "1"] },
+                { duration: 0.75, delay, easing: [0.25, 1, 0.5, 1] }
+            );
+        });        
+    })
+}
