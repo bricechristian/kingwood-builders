@@ -45,6 +45,11 @@ const featuredImage = content[0].images[0];
 		background: rgba(235, 234, 223,.4);
 		z-index: 11;
 	}
+	@media (max-width: 991px){
+		picture:before {
+			background: rgba(235, 234, 223,.7);
+		}
+	}
 </style>
 
 <Layout>
@@ -74,10 +79,10 @@ const featuredImage = content[0].images[0];
 					class="absolute -top-[10vw] -left-[10vw] w-[clamp(200px,30vw,30vw)] h-[clamp(200px,30vw,30vw)] rounded-full bg-[#dce257] blur-[100px] md:blur-[60px] md:-top-[15vw] md:-left-[15vw]"
 				>
 				</div>
-				<div class="grid grid-cols-10 w-full absolute z-20 bottom-20 right-6">
+				<div class="grid grid-cols-10 w-full absolute z-20 bottom-20 right-6 sm:bottom-6">
 					<div class="col-start-10">
 						<div class="-rotate-90 origin-left relative">
-							<div class="absolute top-full right-0 w-full font-medium text-20 whitespace-nowrap">Charleston, SC</div>
+							<div class="absolute top-full right-0 w-full font-medium text-20 whitespace-nowrap sm:text-14">Charleston, SC</div>
 						</div>
 					</div>
 				</div>
