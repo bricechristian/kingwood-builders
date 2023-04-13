@@ -64,7 +64,7 @@ export default async function RootLayout({ children }) {
 						<div className="w-px h-full bg-[rgba(44,44,44,.15)] dark:bg-[rgba(255,255,255,0.15)] md:hidden"></div>
 						<div className="w-px h-full bg-[rgba(44,44,44,.15)] dark:bg-[rgba(255,255,255,0.15)] md:hidden"></div>
 					</div>
-					<Providers>{children}</Providers>
+					{children}
 				</main>
 				<Footer />
 			</body>
