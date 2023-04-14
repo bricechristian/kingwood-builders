@@ -66,7 +66,7 @@
 			body: new URLSearchParams(formData).toString(),
 		})
 			.then(() => {
-                formBody.innerHTML = "<p>Form successfully submitted</p>";
+                formBody.innerHTML = "<p class='text-center'>Thanks for your inquiry! We look forward to connecting with you.</p>";
                 console.log("Form successfully submitted")
             })
 			.catch((error) => alert(error));
