@@ -57,36 +57,36 @@ const featuredImage = content[0].images[0];
 		<div class="grid-layout flex-grow grid-rows-[auto_1fr]">
 			<div class="pt-32 col-start-2 col-span-10 md:pt-24">
 				<h1
-					class="text-[clamp(50px,6.5vw,120px)] leading-[.9] relative z-20"
+					class="text-[clamp(40px,6.5vw,120px)] leading-[.9] relative z-20 md:pr-12"
 				>
-					<span class="typography-shift block">
-						<span>Let's build</span>
-					</span>
 					<span class="typography-shift block" data-delay=".15">
+						<span>We're currently working on</span>
+					</span>
+					<span class="typography-shift block" data-delay=".2">
 						<span>
-							something <span class="font-medium"
+							building something <span class="font-medium"
 						>great.</span>
 						</span>
 					</span>
 				</h1>
-				<p class="relative z-20 max-w-sm mt-2 pr-12 shift-up" data-delay=".2">Pellentesque commodo eros a enim. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In ac dui quis mi consectetuer lacinia. Curabitur vestibulum aliquam leo. Praesent ut ligula non mi varius sagittis.</p>
-				<div class="shift-up relative z-20" data-delay=".35">
-					<a href="#" class="button mt-4">Contact Us</a>
+				<p class="relative z-20 max-w-sm mt-2 pr-12 shift-up" data-delay=".25">Pellentesque commodo eros a enim. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In ac dui quis mi consectetuer lacinia. Curabitur vestibulum aliquam leo. Praesent ut ligula non mi varius sagittis.</p>
+				<div class="shift-up relative z-20" data-delay=".3">
+					<a href="#" class="contact-trigger button mt-4">Contact Us</a>
 				</div>
 			</div>
-			<div class="relative col-start-3 col-span-10 -mt-[257px] md:-mt-[270px]">
-				<div
-					class="absolute -top-[10vw] -left-[10vw] w-[clamp(200px,30vw,30vw)] h-[clamp(200px,30vw,30vw)] rounded-full bg-[#dce257] blur-[100px] md:blur-[60px] md:-top-[15vw] md:-left-[15vw]"
-				>
-				</div>
+			<div
+				class="absolute top-[180px] left-[7vw] w-[clamp(200px,30vw,30vw)] h-[clamp(200px,30vw,30vw)] rounded-full bg-[#dce257] blur-[100px] md:blur-[60px] md:top-[200px] md:left-[5vw] fade-in"
+			>
+			</div>
+			<div class="relative overflow-hidden col-start-3 col-span-10 -mt-[257px] md:-mt-[270px]">
 				<div class="grid grid-cols-10 w-full absolute z-20 bottom-20 right-6 sm:bottom-6">
 					<div class="col-start-10">
 						<div class="-rotate-90 origin-left relative">
-							<div class="absolute top-full right-0 w-full font-medium text-20 whitespace-nowrap sm:text-14">Charleston, SC</div>
+							<div class="absolute top-full right-0 w-full font-medium text-20 whitespace-nowrap sm:text-14 fade-in" data-delay=".25">Charleston, SC</div>
 						</div>
 					</div>
 				</div>
-				<picture>
+				<picture class="fade-in">
 					<source
 						srcset={urlForImage(featuredImage.asset)
 							.format("webp")
@@ -123,7 +123,8 @@ const featuredImage = content[0].images[0];
 						media="(max-width: 478px)"
 					/>
 					<img
-						class={`w-full h-full object-cover absolute z-10`}
+						class={`w-full h-full object-cover absolute z-10 scale-in`}
+						data-delay=".25"
 						src={urlForImage(featuredImage.asset)
 							.maxWidth(800)
 							.quality(80)

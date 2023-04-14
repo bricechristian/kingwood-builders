@@ -3,6 +3,7 @@ import "../styles/global.scss";
 
 import Header from "../components/Header.astro"
 import GridLines from "../components/GridLines.astro";
+import Contact from "../components/Contact.astro";
 
 import { useSanityClient } from 'astro-sanity';
 import { HoverPrefetch } from 'astro-hover-prefetch';
@@ -26,6 +27,7 @@ const { title } = Astro.props
 		<main>
 			<GridLines />
 			<slot />
+			<Contact />
 		</main>
 		<script src="../scripts/global.js"></script>
 	</body>
