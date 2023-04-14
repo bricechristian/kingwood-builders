@@ -4,34 +4,36 @@
 >
 	<div class="overlay fixed inset-0"></div>
 	<div class="container-768 relative z-10 text-24 font-medium md:text-18">
-		<form id="contact-form" name="contact" netlify>
-			<p class="hidden">
-				<label>
-					Don’t fill this out if you’re human: <input
-						name="bot-field"
-					/>
-				</label>
-			</p>
-			<p>
-				Hey, my name is <input
-					type="text"
-					name="name"
-					class="form__input-line"
-				/> and I'm looking for <select
-					name="reason"
-					class="form__input-line"
-				>
-					<option value="Choice 1">Choice 1</option>
-					<option value="Choice 2">Choice 2</option>
-					<option value="Choice 3">Choice 3</option>
-					<option value="Choice 4">Choice 4</option>
-				</select>. Get in touch with me at <input
-					type="email"
-					name="email"
-					class="form__input-line"
-				/>.
-				<button type="submit" class="button w-full mt-6">Send</button>
-			</p>
+		<form id="contact-form" name="contact" netlify-honeypot="bot-field" netlify>
+            <div class="form-body">
+                <p class="hidden">
+                    <label>
+                        Don’t fill this out if you’re human: <input
+                            name="bot-field"
+                        />
+                    </label>
+                </p>
+                <p>
+                    Hey, my name is <input
+                        type="text"
+                        name="name"
+                        class="form__input-line"
+                    /> and I'm looking for <select
+                        name="reason"
+                        class="form__input-line"
+                    >
+                        <option value="Choice 1">Choice 1</option>
+                        <option value="Choice 2">Choice 2</option>
+                        <option value="Choice 3">Choice 3</option>
+                        <option value="Choice 4">Choice 4</option>
+                    </select>. Get in touch with me at <input
+                        type="email"
+                        name="email"
+                        class="form__input-line"
+                    />.
+                    <button type="submit" class="button w-full mt-6">Send</button>
+                </p>
+            </div>
 		</form>
 	</div>
 </section>
@@ -56,13 +58,17 @@
 
 		const myForm = event.target;
 		const formData = new FormData(myForm);
+        const formBody = myForm.querySelector(".form-body");
 
 		fetch("/", {
 			method: "POST",
 			headers: { "Content-Type": "application/x-www-form-urlencoded" },
 			body: new URLSearchParams(formData).toString(),
 		})
-			.then(() => console.log("Form successfully submitted"))
+			.then(() => {
+                formBody.innerHTML = "<p>Form successfully submitted</p>";
+                console.log("Form successfully submitted")
+            })
 			.catch((error) => alert(error));
 	};
 
