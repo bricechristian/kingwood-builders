@@ -77,8 +77,13 @@
 	.transition-smooth {
 		transition: 0.3s;
 	}
-	.grid-layout {
-		@apply grid grid-cols-12 w-full md:grid-cols-10;
+	.grid {
+		&-layout {
+			@apply grid grid-cols-12 w-full md:grid-cols-10;
+		}
+		&-span-xl {
+			@apply col-start-2 col-end-10 md_min:col-end-12;
+		}
 	}
 } 
 

@@ -14,7 +14,7 @@ export default defineType({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
-      description: `${process.env.VERCEL_URL || "http://localhost:3000"}/_______`,
+      description: `${process.env.NEXT_PUBLIC_VERCEL_URL || "http://localhost:3000"}/_______`,
       validation: Rule => Rule.required(),
       options: {
         source: 'title',
@@ -24,11 +24,11 @@ export default defineType({
     defineField({
         type: 'array',
         name: 'content',
-        title: 'Content',
+        title: 'Page Builder',
         of: [
           defineArrayMember({type: 'hero'}),
           defineArrayMember({type: 'textHeadline'}),
-          defineArrayMember({type: 'photographyGrid'})
+          defineArrayMember({type: 'projectCarousel'})
         ]
     }),
     defineField({

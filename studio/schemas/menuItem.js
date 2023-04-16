@@ -33,7 +33,7 @@ export default defineType({
         {
           name: 'internal_link',
           type: 'reference',
-          to: [{ type: 'page' }, { type: 'photography' }],
+          to: [{ type: 'page' }, { type: 'project' }],
           hidden: ({ parent, value }) => parent?.externalLink,
           options: {
             disableNew: true,

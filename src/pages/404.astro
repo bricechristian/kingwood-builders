@@ -1,0 +1,19 @@
+---
+
+import Layout from "../layouts/Layout.astro";
+
+if(Astro.url.pathname.includes("/admin")){
+    return Astro.redirect('/admin')
+}
+
+---
+
+<Layout>
+    <section class="py-40">
+		<div class="grid-layout text-center">
+			<div class="grid-span-xl">
+                <a href="/">Return Home</a>
+            </div>
+        </div>
+    </section>
+</Layout>

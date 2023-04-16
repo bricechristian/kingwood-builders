@@ -4,9 +4,9 @@ const getPreviewURL = (doc) => {
 	// console.log(doc)
 	return doc?.slug?.current
 		? `${
-				process.env.VERCEL_URL || "http://localhost:3000"
+				process.env.NEXT_PUBLIC_VERCEL_URL || "http://localhost:3000"
 		  }/api/preview?type=${doc._type}&slug=${doc.slug.current}`
-		: `${process.env.VERCEL_URL || "http://localhost:3000"}`;
+		: `${process.env.NEXT_PUBLIC_VERCEL_URL || "http://localhost:3000"}`;
 };
 
 export const adminStructure = (S) =>
@@ -15,7 +15,7 @@ export const adminStructure = (S) =>
 		.items([
 			S.documentTypeListItem("page"),
 			S.divider(),
-			S.documentTypeListItem("photography"),
+			S.documentTypeListItem("project"),
 			S.divider(),
 			S.documentTypeListItem("menu"),
 			S.divider(),
@@ -26,7 +26,7 @@ export const adminStructure = (S) =>
 
 export const defaultDocumentNode = (S, { schemaType }) => {
 	// console.log(S)
-	if (schemaType === "photography" || schemaType == "page") {
+	if (schemaType === "project" || schemaType == "page") {
 		return S.document().views([
 			S.view.form(),
 			S.view

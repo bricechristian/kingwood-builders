@@ -1,20 +1,19 @@
 import global from "./global";
 import blockContent from "./blockContent";
-import photography from "./photography";
+import project from "./project";
 import page from "./page";
 import menu from "./menu";
 import menuItem from "./menuItem";
 
-import { heroType, textHeadlineType, photographyGridType, photographyGridItem } from "./pageBuilder";
+import { heroType, textHeadlineType, projectCarouselType } from "./pageBuilder";
 
 export const schemaTypes = [
 	page,
-	photography,
+	project,
 	blockContent,
 	heroType,
 	textHeadlineType,
-	photographyGridType,
-	photographyGridItem,
+	projectCarouselType,
 	menu,
 	menuItem,
 	global,

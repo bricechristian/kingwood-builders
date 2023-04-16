@@ -48,6 +48,8 @@ module.exports = {
 			md_min: "768px",
 			sm: { max: "479px" },
 			sm_min: "480px",
+			xs: { max: "379px" },
+			xs_min: "380px",
 		},
 		extend: {
 			zIndex: {

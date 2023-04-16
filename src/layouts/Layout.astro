@@ -1,14 +1,28 @@
 ---
+
+import { useSanityClient } from 'astro-sanity';
+import { HoverPrefetch } from 'astro-hover-prefetch';
+import { urlForImage } from "../utilities/sanityImage.js";
+
 import "../styles/global.scss";
+
+import { SEO } from "astro-seo";
 
 import Header from "../components/Header.astro"
 import GridLines from "../components/GridLines.astro";
 import Contact from "../components/Contact.astro";
 
-import { useSanityClient } from 'astro-sanity';
-import { HoverPrefetch } from 'astro-hover-prefetch';
 const global = await useSanityClient().fetch(`*[_type=='global'][0]`);
-const { title } = Astro.props
+const { 
+	title = global.site_title, 
+	description = global.site_description,
+	image = global.site_image.asset,
+	imageTitle = title,
+	canonical = Astro.url.href,
+	noindex = false,
+	nofollow = false
+} = Astro.props
+
 ---
 
 <html lang="en">
@@ -17,10 +31,23 @@ const { title } = Astro.props
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="sitemap" href="/sitemap-index.xml">
 		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title ? `${title} | ${global.site_title}` : global.site_title }</title>    
 		<HoverPrefetch max={8} />
 		<link rel="prefetch" href="/" as="document" >
+		<SEO
+			title={title}
+			titleTemplate={Astro.url.pathname === "/" ? "" : `%s | ${global.site_title}`}
+			description={description}
+			canonical={canonical}
+			openGraph={{
+				basic: {
+					title: imageTitle,
+					type: "image",
+					image: urlForImage(image).width(1200).height(630).url(),
+				}
+			}}
+			noindex={noindex}
+			nofollow={nofollow}
+		/>
 	</head>
 	<body>
 		<Header />
