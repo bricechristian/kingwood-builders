@@ -3,7 +3,7 @@
 	class="fixed inset-0 z-[999] flex items-center justify-center backdrop-blur-md invisible transition-smooth"
 >
 	<div class="overlay fixed inset-0"></div>
-	<div class="container-768 relative z-10 text-24 font-medium md:text-18">
+	<div class="container-1060 relative z-10 text-40 font-medium md:text-24">
 		<form id="contact-form" name="contact" netlify-honeypot="bot-field" netlify>
             <div class="form-body">
                 <p class="hidden">
@@ -17,10 +17,13 @@
                     Hey, my name is <input
                         type="text"
                         name="name"
-                        class="form__input-line"
+                        class="form__input-line md_min:h-11 md_min:border-b-[4px]"
+                        placeholder="Name"
+                        required
                     /> and I'm looking for <select
                         name="reason"
-                        class="form__input-line"
+                        class="form__input-line md_min:h-11 md_min:border-b-[4px]"
+                        required
                     >
                         <option value="Choice 1">Choice 1</option>
                         <option value="Choice 2">Choice 2</option>
@@ -29,9 +32,11 @@
                     </select>. Get in touch with me at <input
                         type="email"
                         name="email"
-                        class="form__input-line"
+                        class="form__input-line md_min:h-11 md_min:border-b-[4px]"
+                        placeholder="Email"
+                        required
                     />.
-                    <button type="submit" class="button w-full mt-6">Send</button>
+                    <button type="submit" class="button w-full mt-6 rounded-full">Send</button>
                 </p>
             </div>
 		</form>
