@@ -1,6 +1,6 @@
 <style>
     @media (max-height: 800px) and (orientation: portrait){
-        .md\:text-20 {
+        .container-1060 {
             font-size: 16px;
         }
     }
@@ -11,7 +11,7 @@
 	class="fixed inset-0 z-[999] flex items-center justify-center backdrop-blur-md invisible transition-smooth"
 >
 	<div class="overlay fixed inset-0"></div>
-	<div class="container-1060 relative z-10 text-40 font-medium py-8 overflow-auto max-h-full md:text-20 sm:text-18">
+	<div class="container-1060 relative z-10 text-[clamp(20px,2.5vw,40px)] font-medium py-8 overflow-auto max-h-full md:text-20 sm:text-18">
 		<form
 			id="contact-form"
 			name="contact"
@@ -26,16 +26,16 @@
 						/>
 					</label>
 				</p>
-				<p>
-					Hey, my name is <input
+				<p class="inline-flex flex-wrap items-end gap-3 gap-x-1.5 [&_span]:inline-flex sm:gap-y-1">
+					<span>Hey,</span> <span>my</span> <span>name</span> <span>is</span> <input
 						type="text"
 						name="name"
-						class="form__input-line md_min:h-11 md_min:border-b-[4px]"
+						class="form__input-line md_min:h-11 md_min:border-b-[clamp(1px,.25vw,4px)]"
 						placeholder="Name"
 						required
-					/> and I'm looking for <select
+					/> <span>and</span> <span>I'm</span> <span>looking</span> <span>for</span> <select
 						name="reason"
-						class="form__input-line md_min:h-11 md_min:border-b-[4px]"
+						class="form__input-line md_min:h-11 md_min:border-b-[clamp(1px,.25vw,4px)]"
 						required
 					>
 						<option value="New Home Development"
@@ -48,24 +48,24 @@
 					</select> in <input
 						type="text"
 						name="location"
-						class="form__input-line md_min:h-11 md_min:border-b-[4px]"
+						class="form__input-line md_min:h-11 md_min:border-b-[clamp(1px,.25vw,4px)]"
 						placeholder="Location"
 						required
-					/>. Ideally, I'd love to have the project start around <input
+					/> <span>Ideally,</span> <span>I'd</span> <span>love</span> <span>to</span> <span>have</span> <span>the</span> <span>project</span> <span>start</span> <span>around</span> <input
 						type="date"
 						name="start_date"
-						class="form__input-line md_min:h-11 md_min:border-b-[4px]"
+						class="form__input-line md_min:h-11 md_min:border-b-[clamp(1px,.25vw,4px)]"
 						placeholder="Start Date"
 						required
-					/> and end around <input
+					/> <span>and</span> <span>end</span> <span>around</span> <input
 						type="date"
 						name="end_date"
-						class="form__input-line md_min:h-11 md_min:border-b-[4px]"
+						class="form__input-line md_min:h-11 md_min:border-b-[clamp(1px,.25vw,4px)]"
 						placeholder="End Date"
 						required
-					/>. My current budget for the project is in the range of <select
+					/> <span>My</span> <span>current</span> <span>budget</span> <span>for</span> <span>the</span> <span>project</span> <span>is</span> <span>in</span> <span>the</span> <span>range</span> <span>of</span> <select
 						name="budget"
-						class="form__input-line md_min:h-11 md_min:border-b-[4px]"
+						class="form__input-line md_min:h-11 md_min:border-b-[clamp(1px,.25vw,4px)]"
 						required
 					>
 						<option value="$10K - $25K">$10K - $25K</option>
@@ -74,16 +74,16 @@
 						<option value="$100K - $250K">$100K - $250K</option>
 						<option value="$250K - $500K">$250K - $500K</option>
 						<option value="$500K - $1M">$500K - $1M</option>
-					</select>. Feel free to reach out to me at <input
+					</select> <span>Feel</span> <span>free</span> <span>to</span> <span>reach</span> <span>out</span> <span>to</span> <span>me</span> <span>at</span> <input
 						type="email"
 						name="email"
-						class="form__input-line md_min:h-11 md_min:border-b-[4px]"
+						class="form__input-line md_min:h-11 md_min:border-b-[clamp(1px,.25vw,4px)]"
 						placeholder="Email Address"
 						required
 					/> or at <input
                     type="tel"
                     name="phone"
-                    class="form__input-line md_min:h-11 md_min:border-b-[4px]"
+                    class="form__input-line md_min:h-11 md_min:border-b-[clamp(1px,.25vw,4px)]"
                     placeholder="Phone Number"
                 />.
 					<button
@@ -111,6 +111,30 @@
 		});
 	});
 
+    //TODAY DATE
+    const today = new Date()
+    Date.isLeapYear = function (year) { 
+        return (((year % 4 === 0) && (year % 100 !== 0)) || (year % 400 === 0)); 
+    };
+    Date.getDaysInMonth = function (year, month) {
+        return [31, (Date.isLeapYear(year) ? 29 : 28), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][month];
+    };
+    Date.prototype.isLeapYear = function () { 
+        return Date.isLeapYear(this.getFullYear()); 
+    };
+    Date.prototype.getDaysInMonth = function () { 
+        return Date.getDaysInMonth(this.getFullYear(), this.getMonth());
+    };    
+    Date.prototype.addMonths = function (value) {
+        var n = this.getDate();
+        this.setDate(1);
+        this.setMonth(this.getMonth() + value);
+        this.setDate(Math.min(n, this.getDaysInMonth()));
+        return this;
+    };    
+    document.querySelector("[name='start_date']").valueAsDate = today;
+    document.querySelector("[name='end_date']").valueAsDate = today.addMonths(6);
+
 	//FORM SUBMISSION
 	const handleSubmit = (event) => {
 		event.preventDefault();
@@ -135,4 +159,5 @@
 	document
 		.getElementById("contact-form")
 		.addEventListener("submit", handleSubmit);
+
 </script>
