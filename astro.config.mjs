@@ -3,8 +3,9 @@ import { defineConfig } from 'astro/config';
 // import vercel from '@astrojs/vercel/edge';
 import sanity from "astro-sanity";
 import sitemap from "@astrojs/sitemap";
-
 import netlify from "@astrojs/netlify/functions";
+
+import partytown from "@astrojs/partytown";
 
 // https://astro.build/config
 export default defineConfig({
@@ -14,7 +15,7 @@ export default defineConfig({
     dataset: 'production',
     apiVersion: '2022-11-15',
     useCdn: false
-  }), sitemap()],
+  }), sitemap(), partytown()],
   output: 'server',
   adapter: netlify()
 });
