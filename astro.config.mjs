@@ -9,7 +9,7 @@ import partytown from "@astrojs/partytown";
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://kingwood-builders.netlify.app',
+  site: 'https://kingwoodbuilders.com',
   integrations: [sanity({
     projectId: '8xcmf6z5',
     dataset: 'production',
