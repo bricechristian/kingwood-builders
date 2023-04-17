@@ -14,7 +14,7 @@ export default defineConfig({
     projectId: '8xcmf6z5',
     dataset: 'production',
     apiVersion: '2022-11-15',
-    useCdn: false
+    useCdn: true
   }), sitemap(), partytown({
     config: { 
       forward: ["dataLayer.push"] 
