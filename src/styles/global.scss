@@ -95,7 +95,7 @@
 	.form {
 		&__input {
 			&-line {
-				@apply inline-flex leading-normal rounded-none outline-none bg-transparent border-b-2 px-1 h-8 placeholder:text-[rgba(45,45,45,0.5)];
+				@apply inline-flex leading-normal rounded-none outline-none bg-transparent border-b-2 px-1 h-7 placeholder:text-[rgba(45,45,45,0.5)] md:h-6;
 			}
 		}
 	}
