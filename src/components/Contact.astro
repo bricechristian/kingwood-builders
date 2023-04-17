@@ -1,44 +1,97 @@
+<style>
+    @media (max-height: 800px) and (orientation: portrait){
+        .md\:text-20 {
+            font-size: 16px;
+        }
+    }
+</style>
+
 <section
 	id="contact"
 	class="fixed inset-0 z-[999] flex items-center justify-center backdrop-blur-md invisible transition-smooth"
 >
 	<div class="overlay fixed inset-0"></div>
-	<div class="container-1060 relative z-10 text-40 font-medium md:text-24">
-		<form id="contact-form" name="contact" netlify-honeypot="bot-field" netlify>
-            <div class="form-body">
-                <p class="hidden">
-                    <label>
-                        Don’t fill this out if you’re human: <input
-                            name="bot-field"
-                        />
-                    </label>
-                </p>
-                <p>
-                    Hey, my name is <input
-                        type="text"
-                        name="name"
-                        class="form__input-line md_min:h-11 md_min:border-b-[4px]"
-                        placeholder="Name"
-                        required
-                    /> and I'm looking for <select
-                        name="reason"
-                        class="form__input-line md_min:h-11 md_min:border-b-[4px]"
-                        required
-                    >
-                        <option value="Choice 1">Choice 1</option>
-                        <option value="Choice 2">Choice 2</option>
-                        <option value="Choice 3">Choice 3</option>
-                        <option value="Choice 4">Choice 4</option>
-                    </select>. Get in touch with me at <input
-                        type="email"
-                        name="email"
-                        class="form__input-line md_min:h-11 md_min:border-b-[4px]"
-                        placeholder="Email"
-                        required
-                    />.
-                    <button type="submit" class="button w-full mt-6 rounded-full">Send</button>
-                </p>
-            </div>
+	<div class="container-1060 relative z-10 text-40 font-medium py-8 overflow-auto max-h-full md:text-20 sm:text-18">
+		<form
+			id="contact-form"
+			name="contact"
+			netlify-honeypot="bot-field"
+			netlify
+		>
+			<div class="form-body">
+				<p class="hidden">
+					<label>
+						Don’t fill this out if you’re human: <input
+							name="bot-field"
+						/>
+					</label>
+				</p>
+				<p>
+					Hey, my name is <input
+						type="text"
+						name="name"
+						class="form__input-line md_min:h-11 md_min:border-b-[4px]"
+						placeholder="Name"
+						required
+					/> and I'm looking for <select
+						name="reason"
+						class="form__input-line md_min:h-11 md_min:border-b-[4px]"
+						required
+					>
+						<option value="New Home Development"
+							>New Home Development</option
+						>
+						<option value="Home Renovation">Home Renovation</option>
+						<option value="Something special"
+							>Something special</option
+						>
+					</select> in <input
+						type="text"
+						name="location"
+						class="form__input-line md_min:h-11 md_min:border-b-[4px]"
+						placeholder="Location"
+						required
+					/>. Ideally, I'd love to have the project start around <input
+						type="date"
+						name="start_date"
+						class="form__input-line md_min:h-11 md_min:border-b-[4px]"
+						placeholder="Start Date"
+						required
+					/> and end around <input
+						type="date"
+						name="end_date"
+						class="form__input-line md_min:h-11 md_min:border-b-[4px]"
+						placeholder="End Date"
+						required
+					/>. My current budget for the project is in the range of <select
+						name="budget"
+						class="form__input-line md_min:h-11 md_min:border-b-[4px]"
+						required
+					>
+						<option value="$10K - $25K">$10K - $25K</option>
+						<option value="$25K - $50K">$25K - $50K</option>
+						<option value="$50K - $100K">$50K - $100K</option>
+						<option value="$100K - $250K">$100K - $250K</option>
+						<option value="$250K - $500K">$250K - $500K</option>
+						<option value="$500K - $1M">$500K - $1M</option>
+					</select>. Feel free to reach out to me at <input
+						type="email"
+						name="email"
+						class="form__input-line md_min:h-11 md_min:border-b-[4px]"
+						placeholder="Email Address"
+						required
+					/> or at <input
+                    type="tel"
+                    name="phone"
+                    class="form__input-line md_min:h-11 md_min:border-b-[4px]"
+                    placeholder="Phone Number"
+                />.
+					<button
+						type="submit"
+						class="button w-full mt-6 rounded-full">Send</button
+					>
+				</p>
+			</div>
 		</form>
 	</div>
 </section>
@@ -52,7 +105,8 @@
 		$contact.classList.add("invisible");
 	});
 	$contactTriggers.forEach(($trigger) => {
-		$trigger.addEventListener("click", () => {
+		$trigger.addEventListener("click", (e) => {
+            e.preventDefault();
 			$contact.classList.remove("invisible");
 		});
 	});
@@ -63,7 +117,7 @@
 
 		const myForm = event.target;
 		const formData = new FormData(myForm);
-        const formBody = myForm.querySelector(".form-body");
+		const formBody = myForm.querySelector(".form-body");
 
 		fetch("/", {
 			method: "POST",
@@ -71,11 +125,14 @@
 			body: new URLSearchParams(formData).toString(),
 		})
 			.then(() => {
-                formBody.innerHTML = "<p class='text-center'>Thanks for your inquiry! We look forward to connecting with you.</p>";
-                console.log("Form successfully submitted")
-            })
+				formBody.innerHTML =
+					"<p class='text-center'>Thanks for your inquiry! We look forward to connecting with you.</p>";
+				console.log("Form successfully submitted");
+			})
 			.catch((error) => alert(error));
 	};
 
-	document.getElementById("contact-form").addEventListener("submit", handleSubmit);
+	document
+		.getElementById("contact-form")
+		.addEventListener("submit", handleSubmit);
 </script>
