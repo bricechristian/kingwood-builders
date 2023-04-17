@@ -15,7 +15,11 @@ export default defineConfig({
     dataset: 'production',
     apiVersion: '2022-11-15',
     useCdn: false
-  }), sitemap(), partytown()],
+  }), sitemap(), partytown({
+    config: { 
+      forward: ["dataLayer.push"] 
+    }
+  })],
   output: 'server',
   adapter: netlify()
 });
