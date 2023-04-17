@@ -47,7 +47,7 @@ const featuredImage = content[0].images[0];
 	}
 </style>
 
-<Layout>
+<Layout title={data.settings.ogTitle} description={data.settings.ogDescription}>
 	<section class="flex flex-col flex-grow">
 		<div class="grid-layout flex-grow grid-rows-[auto_1fr]">
 			<div class="pt-32 col-start-2 col-span-10 md:order-2 md:pt-0 md:-mt-12">
@@ -65,7 +65,7 @@ const featuredImage = content[0].images[0];
 				</div>
 			</div>
 			<div
-				class="absolute top-[180px] left-[7vw] w-[clamp(200px,30vw,30vw)] h-[clamp(200px,30vw,30vw)] rounded-full bg-[#dce257] blur-[100px] md:blur-[60px] md:top-[120px] md:left-[5vw] fade-in"
+				class="absolute top-[180px] left-[7vw] w-[clamp(200px,30vw,30vw)] h-[clamp(200px,30vw,30vw)] rounded-full bg-[rgba(220,226,87,0.65)] blur-[60px] md:top-[120px] md:left-[5vw] fade-in"
 			>
 			</div>
 			<div class="relative overflow-hidden col-start-3 col-span-10 -mt-[340px] md:mt-0 md:order-1 md:min-h-[66vw] sm:min-h-[90vw] xs:min-h-[70vw]">
