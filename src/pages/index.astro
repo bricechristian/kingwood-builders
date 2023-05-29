@@ -65,8 +65,9 @@ const featuredImage = content[0].images[0];
 					class="text-[clamp(40px,6.5vw,120px)] leading-[.9] relative z-20 md:pr-12 xs:pr-0"
 				>
 					<span
-						class="typography-shift block pt-16 -mt-16"
-						data-delay=".15"
+						class="block pt-16 -mt-16"
+						data-viewport="typography-shift"
+						data-viewport-delay=".15"
 					>
 						<span
 							>Developing <span id="dreams">dreams</span>
@@ -76,7 +77,8 @@ const featuredImage = content[0].images[0];
 				</h1>
 				<p
 					class="relative z-20 max-w-md mt-2 pr-12 shift-up sm:text-14 xs:text-[13px] sm:pr-8"
-					data-delay=".25"
+					data-viewport="shift-up"
+					data-viewport-delay=".25"					
 				>
 					A longstanding ambition to be the best Property Development
 					Company in the industry has been our main inspiration since
@@ -86,7 +88,10 @@ const featuredImage = content[0].images[0];
 					each project’s budget. At KingWood Builders, we’re not just
 					building properties—we’re elevating industry standards.
 				</p>
-				<div class="shift-up relative z-20" data-delay=".3">
+				<div 
+				class="shift-up relative z-20" 
+				data-viewport="shift-up"
+				data-viewport-delay=".3">
 					<a href="#" class="contact-trigger button mt-4"
 						>Contact Us</a
 					>
@@ -105,15 +110,16 @@ const featuredImage = content[0].images[0];
 					<div class="col-start-10">
 						<div class="-rotate-90 origin-left relative">
 							<div
-								class="absolute top-full right-0 w-full font-medium text-20 whitespace-nowrap sm:text-14 fade-in"
-								data-delay=".25"
+								class="absolute top-full right-0 w-full font-medium text-20 whitespace-nowrap sm:text-14"
+								data-viewport="fade-in"
+								data-viewport-delay=".25"
 							>
 								Charleston, SC
 							</div>
 						</div>
 					</div>
 				</div>
-				<picture class="fade-in">
+				<picture data-viewport="fade-in">
 					<source
 						srcset={urlForImage(featuredImage.asset)
 							.width(1800)

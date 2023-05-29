@@ -17,6 +17,7 @@
     "@astrojs/vercel": "^3.2.1",
     "@sanity/eventsource": "^5.0.0",
     "@sanity/groq-store": "^2.1.0",
+    "@splidejs/splide": "^4.1.4",
     "astro": "^2.2.3",
     "astro-hover-prefetch": "^1.0.6",
     "astro-sanity": "^1.1.3",

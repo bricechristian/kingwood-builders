@@ -70,9 +70,17 @@ export default defineType({
           name: 'ogImage',
           description:
             'Overrides global default image. Recommended Image Dimensions: 1200x630',
-            fieldset: 'seo'
-
-        }       
+          fieldset: 'seo'
+        },
+        {
+          title: 'Block Search indexing?',
+          name: 'noindex',
+          type: 'boolean',
+          initialValue: false,
+          description:
+            'When enabled this page will not be "indexed" by search engines. In other words, the page will not be visible to search engines',          
+          fieldset: 'seo'
+        }        
       ]
     })    
   ],

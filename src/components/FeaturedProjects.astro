@@ -1,0 +1,159 @@
+---
+import "@splidejs/splide/css/core";
+import "../styles/components/featuredProjects.scss";
+
+import { urlForImage } from "../utilities/sanityImage.js";
+
+const { projects } = Astro.props;
+---
+
+<section class="featured-projects splide">
+	<div class="featured-projects__container">
+		<div class="featured-projects__blur" data-viewport="fade-in"></div>
+		<div class="splide__track">
+			<ul class="splide__list">
+				{
+					projects.map((project, index) => {
+						return (
+							<li class="featured-projects__item splide__slide">
+								<div class="featured-projects__item--grid grid-layout">
+									<div class="featured-projects__item-grid--text">
+										<h1 data-viewport="typography-shift">
+											<span>{project.title}</span>
+										</h1>
+										{project.description?.length ? (
+											<div
+												class="rte"
+												data-viewport="shift-up"
+												data-viewport-delay=".15">
+												{project.description}
+											</div>
+										) : (
+											""
+										)}
+									</div>
+									<div class="featured-projects__item-grid--image">
+										{project.featuredImage ? (
+											<picture
+												data-viewport="fade-in"
+												data-viewport-delay=".45">
+												<source
+													srcset={urlForImage(
+														project.featuredImage
+															.asset
+													)
+														.width(1800)
+														.format("webp")
+														.quality(80)
+														.url()}
+													type="image/webp"
+													media="(min-width: 1200px)"
+												/>
+												<source
+													srcset={urlForImage(
+														project.featuredImage
+															.asset
+													)
+														.width(1200)
+														.format("webp")
+														.quality(80)
+														.url()}
+													type="image/webp"
+													media="(min-width: 768px)"
+												/>
+												<source
+													srcset={urlForImage(
+														project.featuredImage
+															.asset
+													)
+														.width(850)
+														.format("webp")
+														.quality(80)
+														.url()}
+													type="image/webp"
+													media="(min-width: 479px)"
+												/>
+												<source
+													srcset={urlForImage(
+														project.featuredImage
+															.asset
+													)
+														.width(650)
+														.format("webp")
+														.url()}
+													type="image/webp"
+													media="(max-width: 478px)"
+												/>
+												<img
+													class={`w-full h-full object-cover absolute z-10 scale-in`}
+													data-delay=".25"
+													src={urlForImage(
+														project.featuredImage
+															.asset
+													)
+														.width(800)
+														.quality(80)
+														.url()}
+													width="1920"
+													height="1080"
+													alt={
+														project.featuredImage
+															.alt
+													}
+													srcset={`${urlForImage(
+														project.featuredImage
+															.asset
+													)
+														.width(800)
+														.quality(80)
+														.url()} 479w,
+                                                ${urlForImage(
+													project.featuredImage.asset
+												)
+													.width(1200)
+													.quality(80)
+													.url()} 768w,
+                                                ${urlForImage(
+													project.featuredImage.asset
+												)
+													.width(1800)
+													.quality(80)
+													.url()} 1200w`}
+													sizes="(max-width: 768px) 100vw, (max-width: 1200px) 1400px, 1920px"
+												/>
+											</picture>
+										) : (
+											""
+										)}
+									</div>
+								</div>
+							</li>
+						);
+					})
+				}
+			</ul>
+		</div>
+        <div class="featured-projects__index grid-layout">
+            <div class="featured-projects__index--text">
+                <span>01/</span>
+                <span>{`${projects.length < 10 ? "0" : projects.length}${projects.length}`}</span>
+            </div>
+        </div>
+	</div>
+</section>
+
+<script>
+	import Splide from "@splidejs/splide";
+
+	new Splide(".splide", {
+		type: "loop",
+        pagination: false,
+		arrows: false,
+	})
+		.on("move", function (newIndex) {
+			document.querySelector(
+				".featured-projects__index--text span"
+			)[0].textContent = `${newIndex + 1 < 10 ? "0" : ""}${newIndex + 1}`;
+		})
+		.mount();
+</script>
