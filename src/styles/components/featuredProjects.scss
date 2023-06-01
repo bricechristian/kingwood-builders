@@ -82,7 +82,11 @@
 
     &__index {
 
-        @apply absolute z-50 bottom-8 right-[10vw] text-right pointer-events-none md:hidden;
+        @apply absolute z-50 bottom-8 right-[10vw] text-right pointer-events-none;
+
+        @screen md {
+            display: none !important;
+        }
 
         &--text {
             @apply flex col-start-9 text-[clamp(90px,12.5vw,160px)] leading-[.9] font-medium text-transparent;
