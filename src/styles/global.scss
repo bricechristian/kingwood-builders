@@ -23,8 +23,8 @@
 	a {
 		transition: 0.3s;
 	}
-	.kill-transform {
-		transform: none !important;
+	.caps {
+		@apply font-medium text-14 uppercase tracking-widest;
 	}
 }
 
@@ -83,6 +83,9 @@
 	.grid-span-xl {
 		@apply col-start-2 col-end-10 md_min:col-end-12;
 	}
+	.kill-transform {
+		transform: none !important;
+	}
 } 
 
 @layer components {
@@ -109,7 +112,7 @@
 	}
 	//SHIFT UP
 	[data-viewport="shift-up"] {
-		@apply opacity-0;
+		@apply opacity-0 translate-y-full;
 	}
 	//SCALE IN
 	[data-viewport="scale-in"] {

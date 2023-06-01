@@ -18,19 +18,77 @@ const { projects } = Astro.props;
 							<li class="featured-projects__item splide__slide">
 								<div class="featured-projects__item--grid grid-layout">
 									<div class="featured-projects__item-grid--text">
-										<h1 data-viewport="typography-shift">
-											<span>{project.title}</span>
-										</h1>
-										{project.description?.length ? (
+										<div class="md_min:space-y-2">
+											<h1 data-viewport="typography-shift">
+												<span>{project.title}</span>
+											</h1>
+											{project.description?.length ? (
+												<div
+													class="rte"
+													data-viewport="shift-up"
+													data-viewport-delay=".15">
+													<Fragment
+														set:html={project.description
+															.split("\n")
+															.join("<br />")}
+													/>
+												</div>
+											) : (
+												""
+											)}
+											{project.specs?.length ? (
+												<div
+													class="rte"
+													data-viewport="shift-up"
+													data-viewport-delay=".30">
+													<Fragment
+														set:html={project.specs
+															.split("\n")
+															.join("<br />")}
+													/>
+												</div>
+											) : (
+												""
+											)}
 											<div
-												class="rte"
+												class="!mt-6"
 												data-viewport="shift-up"
-												data-viewport-delay=".15">
-												{project.description}
+												data-viewport-delay=".5">
+												<a href="#" class="button">View Project</a>
 											</div>
-										) : (
-											""
-										)}
+										</div>
+										<div class="flex-grow flex pt-4 md_min:py-8 md_min:items-end">
+											<div class="md_min:space-y-1">
+												{project.date?.length ? (
+													<div
+                                                        class="caps"
+														data-viewport="shift-up"
+														data-viewport-delay=".6">
+														<Fragment
+															set:html={
+																project.date
+															}
+														/>
+													</div>
+												) : (
+													""
+												)}
+												{project.location?.length ? (
+													<div
+                                                        class="caps"
+														data-viewport="shift-up"
+														data-viewport-delay=".6">
+														<Fragment
+															set:html={
+																project.location
+															}
+														/>
+													</div>
+												) : (
+													""
+												)}
+											</div>
+										</div>
 									</div>
 									<div class="featured-projects__item-grid--image">
 										{project.featuredImage ? (
@@ -133,12 +191,18 @@ const { projects } = Astro.props;
 				}
 			</ul>
 		</div>
-        <div class="featured-projects__index grid-layout">
-            <div class="featured-projects__index--text">
-                <span>01/</span>
-                <span>{`${projects.length < 10 ? "0" : projects.length}${projects.length}`}</span>
-            </div>
-        </div>
+		<div class="featured-projects__index grid-layout">
+			<div class="featured-projects__index--text">
+				<span>01/</span>
+				<span
+					>{
+						`${projects.length < 10 ? "0" : projects.length}${
+							projects.length
+						}`
+					}</span
+				>
+			</div>
+		</div>
 	</div>
 </section>
 
@@ -147,13 +211,15 @@ const { projects } = Astro.props;
 
 	new Splide(".splide", {
 		type: "loop",
-        pagination: false,
+		pagination: true,
 		arrows: false,
 	})
 		.on("move", function (newIndex) {
-			document.querySelector(
+			document.querySelectorAll(
 				".featured-projects__index--text span"
-			)[0].textContent = `${newIndex + 1 < 10 ? "0" : ""}${newIndex + 1}`;
+			)[0].textContent = `${newIndex + 1 < 10 ? "0" : ""}${
+				newIndex + 1
+			}/`;
 		})
 		.mount();
 </script>
