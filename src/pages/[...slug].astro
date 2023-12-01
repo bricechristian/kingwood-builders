@@ -10,9 +10,12 @@ export const prerender = true;
 let previewResponse;
 let responseJSON;
 
+const AstroURL = Astro.url;
+const AstroParams = Astro.params;
+
 if(Astro.url.search.includes("preview=true")){
     previewResponse = await fetch(
-        `https://kingwood-builders.netlify.app/.netlify/functions/preview?type=page&slug=${Astro.url.pathname.split("/")[1]}`
+        `https://kingwood-builders.netlify.app/.netlify/functions/preview?type=page&slug=${Astro.params.slug}`
     );
     responseJSON = await previewResponse.json();
 }
@@ -92,6 +95,8 @@ if (!data) return Astro.redirect("/404");
 	}
 </Layout>
 
-<script define:vars={{ data }}>
+<script define:vars={{ data, AstroURL, AstroParams }}>
     console.log(data)
+    console.log(AstroURL)
+    console.log(AstroParams)
 </script>
