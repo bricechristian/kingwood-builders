@@ -3,10 +3,20 @@ import { useSanityClient } from "astro-sanity";
 import { urlForImage } from "../utilities/sanityImage.js";
 
 import Layout from "../layouts/Layout.astro";
-
 import FeaturedProjects from "../components/FeaturedProjects.astro"
 
 export const prerender = true;
+
+let previewResponse;
+let responseJSON;
+
+if(Astro.url.search.includes("preview=true")){
+    previewResponse = await fetch(
+        `https://kingwood-builders.netlify.app/.netlify/functions/preview?type=page&slug=${Astro.url.pathname.split("/")[1]}`
+    );
+    responseJSON = await previewResponse.json();
+}
+
 
 export async function getStaticPaths() {
 	const data = await useSanityClient().fetch(`
@@ -22,7 +32,7 @@ export async function getStaticPaths() {
 
 const { slug } = Astro.params;
 
-const data = await useSanityClient().fetch(`
+const data = responseJSON === undefined ? await useSanityClient().fetch(`
 *[_type=='page' && slug.current == '${slug}'][0] {
 	...,
 	content[] {
@@ -30,9 +40,10 @@ const data = await useSanityClient().fetch(`
         projects[]->
 	}	
 }
-`);
+`) : responseJSON.data;
 
 if (!data) return Astro.redirect("/404");
+
 ---
 
 <Layout
@@ -45,6 +56,20 @@ if (!data) return Astro.redirect("/404");
 				case "projectCarousel":
                     return (
                         <FeaturedProjects projects={section.projects} /> 
+                    )
+				case "textHeadline":
+                    return (
+                        <section class="py-40">
+                            <div class="grid-layout text-center">
+                                <div class="grid-span-xl">
+                                    <h1
+                                        class="justify-center"
+                                        data-viewport="typography-shift">
+                                        <span>{section.title}</span>
+                                    </h1>
+                                </div>
+                            </div>
+                        </section>
                     )
 				default:
                     return (
