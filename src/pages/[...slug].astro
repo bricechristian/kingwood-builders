@@ -91,3 +91,7 @@ if (!data) return Astro.redirect("/404");
 		})
 	}
 </Layout>
+
+<script define:vars={{ data }}>
+    console.log(data)
+</script>
