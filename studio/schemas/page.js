@@ -14,7 +14,7 @@ export default defineType({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
-      description: `${process.env.NEXT_PUBLIC_VERCEL_URL || "http://localhost:3000"}/_______`,
+      description: `https://kingwoodbuilders.com/_______`,
       validation: Rule => Rule.required(),
       options: {
         source: 'title',

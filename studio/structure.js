@@ -3,10 +3,8 @@ import Iframe from "sanity-plugin-iframe-pane";
 const getPreviewURL = (doc) => {
 	// console.log(doc)
 	return doc?.slug?.current
-		? `${
-				process.env.NEXT_PUBLIC_VERCEL_URL || "http://localhost:3000"
-		  }/api/preview?type=${doc._type}&slug=${doc.slug.current}`
-		: `${process.env.NEXT_PUBLIC_VERCEL_URL || "http://localhost:3000"}`;
+		? `https://kingwoodbuilders.com/${doc.slug.current}?preview=true`
+		: `https://kingwoodbuilders.com`;
 };
 
 export const adminStructure = (S) =>
