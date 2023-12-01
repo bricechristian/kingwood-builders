@@ -3,7 +3,7 @@ import Iframe from "sanity-plugin-iframe-pane";
 const getPreviewURL = (doc) => {
 	// console.log(doc)
 	return doc?.slug?.current
-		? `https://kingwoodbuilders.com/${doc.slug.current}?preview=true`
+		? `https://kingwoodbuilders.com/preview/${doc.slug.current}`
 		: `https://kingwoodbuilders.com`;
 };
 

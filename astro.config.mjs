@@ -18,7 +18,9 @@ export default defineConfig({
       useCdn: true,
     }),
     sitemap({
-      filter: (page) => page !== "https://kingwoodbuilders.com/admin/",
+      filter: (page) => 
+        page !== "https://kingwoodbuilders.com/admin/" &&
+        !page.includes("/preview"),
     }),
     partytown({
       config: {
