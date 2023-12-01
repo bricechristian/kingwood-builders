@@ -42,7 +42,7 @@ const data = responseJSON === undefined ? await useSanityClient().fetch(`
 }
 `) : responseJSON.data;
 
-// console.log(data)
+console.log(data)
 
 if (!data) return Astro.redirect("/404");
 
