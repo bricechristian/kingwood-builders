@@ -1,8 +1,10 @@
 import { defineField, defineType } from "sanity";
+import {CaseIcon} from '@sanity/icons'
 
 export default defineType({
 	name: "project",
 	title: "Projects",
+	icon: CaseIcon,
 	type: "document",
 	fields: [
 		defineField({
@@ -19,6 +21,7 @@ export default defineType({
 			options: {
 				source: "title",
 				maxLength: 96,
+				isUnique: (value, context) => context.defaultIsUnique(value, context)
 			},
 		}),
 		defineField({

@@ -15,6 +15,9 @@ export const adminStructure = (S) =>
 			S.divider(),
 			S.documentTypeListItem("project"),
 			S.divider(),
+			S.documentTypeListItem("post"),
+			S.documentTypeListItem("author"),
+			S.divider(),
 			S.documentTypeListItem("menu"),
 			S.divider(),
 			S.listItem()
@@ -24,7 +27,7 @@ export const adminStructure = (S) =>
 
 export const defaultDocumentNode = (S, { schemaType }) => {
 	// console.log(S)
-	if (schemaType === "project" || schemaType == "page") {
+	if (schemaType == "page") {
 		return S.document().views([
 			S.view.form(),
 			S.view

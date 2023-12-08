@@ -1,8 +1,10 @@
 import {defineField, defineType} from 'sanity'
+import {CogIcon} from '@sanity/icons'
 
 export default defineType({
   name: 'global',
   title: 'Site Settings',
+  icon: CogIcon,
   type: 'document',
   fields: [
     defineField({
