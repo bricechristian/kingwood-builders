@@ -5,8 +5,8 @@ package = "@netlify/plugin-sitemap"
   buildDir = "dist"
   exclude = [
     # By Glob pattern
-    '*admin*',
-    '*sample*',
-    '*/home*',
-    '*/landing*'
+    '*admin',
+    '*sample-page',
+    '*home',
+    '*landing'
   ]
