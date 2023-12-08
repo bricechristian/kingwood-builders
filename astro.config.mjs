@@ -19,7 +19,8 @@ export default defineConfig({
     }),
     sitemap({
       filter: (page) => 
-        page !== "https://kingwoodbuilders.com/admin/" &&
+        !page.includes("/admin") &&
+        !page.includes("/sample") &&
         !page.includes("/preview"),
     }),
     partytown({
