@@ -30,6 +30,12 @@ export default defineType({
         of: [
           defineArrayMember({type: 'hero'}),
           defineArrayMember({type: 'textHeadline'}),
+          defineArrayMember({type: 'textImage'}),
+          defineArrayMember({type: 'list'}),
+          defineArrayMember({type: 'cards'}),
+          defineArrayMember({type: 'team'}),
+          defineArrayMember({type: 'steps'}),
+          defineArrayMember({type: 'ctaLargeText'}),
           defineArrayMember({type: 'projectCarousel'})
         ]
     }),

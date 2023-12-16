@@ -15,6 +15,9 @@ export const adminStructure = (S) =>
 			S.divider(),
 			S.documentTypeListItem("project"),
 			S.divider(),
+			S.documentTypeListItem("teamMember")
+				.title("Team"),
+			S.divider(),
 			S.documentTypeListItem("post"),
 			S.documentTypeListItem("author"),
 			S.divider(),
