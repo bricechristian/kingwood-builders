@@ -8,7 +8,6 @@
 
     &__bg {
         @apply 
-            grid-layout
             absolute
             -z-1
             top-0
@@ -20,7 +19,6 @@
             
             div {
                 @apply             
-                    grid-span-xl 
                     grid 
                     grid-cols-10 
                     w-full 
