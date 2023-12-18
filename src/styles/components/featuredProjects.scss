@@ -1,6 +1,6 @@
 .featured-projects {
 
-    @apply flex flex-col flex-grow;
+    @apply flex flex-col flex-grow md:mb-12;
 
     &__container {
 
@@ -49,7 +49,7 @@
                 @apply flex flex-col pt-32 col-start-2 col-span-10 relative z-30 md_min:col-end-8 md:order-2 md:pt-0 md:-mt-12 md:pr-[10vw];
 
                 h1 {
-                    @apply text-[clamp(40px,6.5vw,120px)] leading-[.9] relative z-20 md:pr-12 xs:pr-0;
+                    @apply headline-01 relative z-20 md:pr-12 xs:pr-0;
                 }
 
                 hr {

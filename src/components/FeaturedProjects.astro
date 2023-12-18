@@ -4,7 +4,7 @@ import "../styles/components/featuredProjects.scss";
 
 import { urlForImage } from "../utilities/sanityImage.js";
 
-const { projects } = Astro.props;
+const { data } = Astro.props;
 ---
 
 <section class="featured-projects splide">
@@ -13,7 +13,7 @@ const { projects } = Astro.props;
 		<div class="splide__track">
 			<ul class="splide__list">
 				{
-					projects.map((project, index) => {
+					data.map((project, index) => {
 						return (
 							<li class="featured-projects__item splide__slide">
 								<div class="featured-projects__item--grid grid-layout">
@@ -196,8 +196,8 @@ const { projects } = Astro.props;
 				<span>01/</span>
 				<span
 					>{
-						`${projects.length < 10 ? "0" : projects.length}${
-							projects.length
+						`${data.length < 10 ? "0" : data.length}${
+							data.length
 						}`
 					}</span
 				>

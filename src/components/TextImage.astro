@@ -1,3 +1,263 @@
 ---
 
+import { urlForImage } from "../utilities/sanityImage.js";
+import { PortableText } from "astro-portabletext";
+import "../styles/components/textImage.scss";
+
+const { data } = Astro.props;
 ---
+
+<style define:vars={{ 
+    paddingTop: `${data.utilities.paddingTop}px`,
+    paddingTopTablet: `${data.utilities.paddingTopTablet}px`,
+    paddingTopMobile: `${data.utilities.paddingTopMobile}px`,
+    paddingBottom: `${data.utilities.paddingBottom}px`,
+    paddingBottomTablet: `${data.utilities.paddingBottomTablet}px`,
+    paddingBottomMobile: `${data.utilities.paddingBottomMobile}px`,
+}}>  
+    section {
+        padding-top: var(--paddingTop);
+        padding-top: var(--paddingBottom);
+    }
+    @media (max-width: 991px){
+        section {
+            padding-top: var(--paddingTopTablet);
+            padding-top: var(--paddingBottomTablet);
+        }        
+    }
+    @media (max-width: 767px){
+        section {
+            padding-top: var(--paddingTopMobile);
+            padding-top: var(--paddingBottomMobile);
+        }
+    }
+</style>
+
+<section class="text-image">
+    <div class="text-image__bg" data-viewport="fade-in">
+        <div></div>
+    </div>
+    <div class="grid-layout">
+        <div class="text-image__container">
+            <div class="md:hidden md_min:col-span-4">
+                {data.image ? (
+                    <picture
+                        data-viewport="fade-in"
+                        data-viewport-delay=".45">
+                        <source
+                            srcset={urlForImage(
+                                data.image
+                                    .asset
+                            )
+                                .width(1400)
+                                .format("webp")
+                                .quality(80)
+                                .url()}
+                            type="image/webp"
+                            media="(min-width: 1200px)"
+                        />
+                        <source
+                            srcset={urlForImage(
+                                data.image
+                                    .asset
+                            )
+                                .width(1200)
+                                .format("webp")
+                                .quality(80)
+                                .url()}
+                            type="image/webp"
+                            media="(min-width: 768px)"
+                        />
+                        <source
+                            srcset={urlForImage(
+                                data.image
+                                    .asset
+                            )
+                                .width(850)
+                                .format("webp")
+                                .quality(80)
+                                .url()}
+                            type="image/webp"
+                            media="(min-width: 479px)"
+                        />
+                        <source
+                            srcset={urlForImage(
+                                data.image
+                                    .asset
+                            )
+                                .width(650)
+                                .format("webp")
+                                .url()}
+                            type="image/webp"
+                            media="(max-width: 478px)"
+                        />
+                        <img
+                            class={`w-full`}
+                            data-delay=".25"
+                            src={urlForImage(
+                                data.image
+                                    .asset
+                            )
+                                .width(800)
+                                .quality(80)
+                                .url()}
+                            width="1920"
+                            height="1080"
+                            alt={
+                                data.image
+                                    .alt
+                            }
+                            srcset={`${urlForImage(
+                                data.image
+                                    .asset
+                            )
+                                .width(800)
+                                .quality(80)
+                                .url()} 479w,
+                        ${urlForImage(
+                            data.image.asset
+                        )
+                            .width(1200)
+                            .quality(80)
+                            .url()} 768w,
+                        ${urlForImage(
+                            data.image.asset
+                        )
+                            .width(1800)
+                            .quality(80)
+                            .url()} 1200w`}
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 1400px, 1920px"
+                        />
+                    </picture>
+                ) : (
+                    ""
+                )}                
+            </div>
+            <div class="col-span-full md_min:col-span-5 md_min:col-start-6">
+                <div class="space-y-4 md_min:space-y-5 md_min:max-w-[clamp(300px,40vw,580px)]">
+                    {data.eyebrow.length ? (
+                        <h3
+                            class="caps"
+                            data-viewport="typography-shift"
+                            data-viewport-delay=".15">
+                            <span><Fragment set:html={data.eyebrow.split("\n").join("<br />")} /></span>
+                        </h3>
+                    ) : ""}
+                    {data.title.length ? (
+                        <h2
+                            class="headline-02"
+                            data-viewport="typography-shift">
+                            <span>{data.title}</span>
+                        </h2>
+                    ) : ""}
+                    {data.image ? (
+                        <picture
+                            data-viewport="fade-in"
+                            data-viewport-delay=".45">
+                            <source
+                                srcset={urlForImage(
+                                    data.image
+                                        .asset
+                                )
+                                    .width(1400)
+                                    .format("webp")
+                                    .quality(80)
+                                    .url()}
+                                type="image/webp"
+                                media="(min-width: 1200px)"
+                            />
+                            <source
+                                srcset={urlForImage(
+                                    data.image
+                                        .asset
+                                )
+                                    .width(1200)
+                                    .format("webp")
+                                    .quality(80)
+                                    .url()}
+                                type="image/webp"
+                                media="(min-width: 768px)"
+                            />
+                            <source
+                                srcset={urlForImage(
+                                    data.image
+                                        .asset
+                                )
+                                    .width(850)
+                                    .format("webp")
+                                    .quality(80)
+                                    .url()}
+                                type="image/webp"
+                                media="(min-width: 479px)"
+                            />
+                            <source
+                                srcset={urlForImage(
+                                    data.image
+                                        .asset
+                                )
+                                    .width(650)
+                                    .format("webp")
+                                    .url()}
+                                type="image/webp"
+                                media="(max-width: 478px)"
+                            />
+                            <img
+                                class={`w-full mt-4 md_min:hidden`}
+                                data-delay=".25"
+                                src={urlForImage(
+                                    data.image
+                                        .asset
+                                )
+                                    .width(800)
+                                    .quality(80)
+                                    .url()}
+                                width="1920"
+                                height="1080"
+                                alt={
+                                    data.image
+                                        .alt
+                                }
+                                srcset={`${urlForImage(
+                                    data.image
+                                        .asset
+                                )
+                                    .width(800)
+                                    .quality(80)
+                                    .url()} 479w,
+                            ${urlForImage(
+                                data.image.asset
+                            )
+                                .width(1200)
+                                .quality(80)
+                                .url()} 768w,
+                            ${urlForImage(
+                                data.image.asset
+                            )
+                                .width(1800)
+                                .quality(80)
+                                .url()} 1200w`}
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 1400px, 1920px"
+                            />
+                        </picture>
+                    ) : (
+                        ""
+                    )}     
+                    {data.bodycopy.length ? (
+                        <div 
+                            class="md_min:max-w-sm"
+                            data-viewport="fade-in"
+                            data-viewport-delay=".45"                        
+                        >
+                            <PortableText value={data.bodycopy} />
+                        </div>
+                    ) : ""}                                  
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script define:vars={{ data }}>
+    console.log(data)
+</script>

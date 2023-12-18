@@ -18,13 +18,22 @@
 		@apply antialiased flex flex-col min-h-screen text-black font-sans font-light;
 	}
 	main {
-		@apply flex-grow flex flex-col;
+		@apply flex-grow flex flex-col; 
 	}
 	a {
 		transition: 0.3s;
 	}
+	// TYPOGRAPHY 
+	.headline {
+		&-01 {
+			@apply text-[clamp(60px,6.5vw,120px)] leading-[.9];
+		}
+		&-02 {
+			@apply text-[clamp(48px,5.5vw,90px)] leading-[.9];
+		}
+	}	
 	.caps {
-		@apply font-medium text-14 uppercase tracking-widest;
+		@apply font-semibold text-14 uppercase tracking-widest;
 	}
 }
 

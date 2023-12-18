@@ -1,4 +1,4 @@
-import { i as server_default } from './chunks/astro.2cf47c56.mjs';
+import { j as server_default } from './chunks/astro.ae63679d.mjs';
 import 'cookie';
 import 'kleur/colors';
 import 'slash';

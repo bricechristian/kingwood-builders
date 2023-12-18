@@ -4,6 +4,11 @@ import { urlForImage } from "../utilities/sanityImage.js";
 
 import Layout from "../layouts/Layout.astro";
 import FeaturedProjects from "../components/FeaturedProjects.astro"
+import TextImage from "../components/TextImage.astro"
+import Services from "../components/Services.astro"
+import Team from "../components/Team.astro"
+import Steps from "../components/Steps.astro"
+import CtaLargeText from "../components/CtaLargeText.astro"
 
 export const prerender = true;
 
@@ -55,105 +60,27 @@ if (!data) return Astro.redirect("/404");
 			switch (section._type) {
 				case "projectCarousel":
                     return (
-                        <FeaturedProjects projects={section.projects} /> 
-                    )
-				case "textHeadline":
-                    return (
-                        <section class="py-40">
-                            <div class="grid-layout text-center">
-                                <div class="grid-span-xl">
-                                    <h1
-                                        class="justify-center"
-                                        data-viewport="typography-shift">
-                                        <span>{section.title}</span>
-                                    </h1>
-                                </div>
-                            </div>
-                        </section>
+                        <FeaturedProjects data={section.projects} /> 
                     )
 				case "textImage":
                     return (
-                        <section class="py-40">
-                            <div class="grid-layout text-center">
-                                <div class="grid-span-xl">
-                                    <h1
-                                        class="justify-center"
-                                        data-viewport="typography-shift">
-                                        <span>textImage</span>
-                                    </h1>
-                                </div>
-                            </div>
-                        </section>
+                        <TextImage data={section} /> 
                     )
-				case "list":
+                case "services":
                     return (
-                        <section class="py-40">
-                            <div class="grid-layout text-center">
-                                <div class="grid-span-xl">
-                                    <h1
-                                        class="justify-center"
-                                        data-viewport="typography-shift">
-                                        <span>list</span>
-                                    </h1>
-                                </div>
-                            </div>
-                        </section>
-                    )
-				case "cards":
-                    return (
-                        <section class="py-40">
-                            <div class="grid-layout text-center">
-                                <div class="grid-span-xl">
-                                    <h1
-                                        class="justify-center"
-                                        data-viewport="typography-shift">
-                                        <span>cards</span>
-                                    </h1>
-                                </div>
-                            </div>
-                        </section>
+                        <Services data={section} /> 
                     )
 				case "team":
                     return (
-                        <section class="py-40">
-                            <div class="grid-layout text-center">
-                                <div class="grid-span-xl">
-                                    <h1
-                                        class="justify-center"
-                                        data-viewport="typography-shift">
-                                        <span>textImage</span>
-                                    </h1>
-                                </div>
-                            </div>
-                        </section>
+                        <Team data={section} /> 
                     )
 				case "steps":
                     return (
-                        <section class="py-40">
-                            <div class="grid-layout text-center">
-                                <div class="grid-span-xl">
-                                    <h1
-                                        class="justify-center"
-                                        data-viewport="typography-shift">
-                                        <span>steps</span>
-                                    </h1>
-                                </div>
-                            </div>
-                        </section>
+                        <Steps data={section} /> 
                     )
 				case "ctaLargeText":
                     return (
-                        <section class="py-40">
-                            <div class="grid-layout text-center">
-                                <div class="grid-span-xl">
-                                    <h1
-                                        class="justify-center"
-                                        data-viewport="typography-shift">
-                                        <span>ctaLargeText</span>
-                                    </h1>
-                                </div>
-                            </div>
-                        </section>
+                        <CtaLargeText data={section} /> 
                     )
 				default:
                     return (
@@ -173,3 +100,7 @@ if (!data) return Astro.redirect("/404");
 		})
 	}
 </Layout>
+
+<script define:vars={{ data }}>
+    console.log(data.content)
+</script>

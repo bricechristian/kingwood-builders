@@ -1,0 +1,46 @@
+.text-image {
+
+    @apply relative overflow-x-hidden;
+
+    &__blur {
+        // @apply absolute top-[60px] -right-[18vw] w-[clamp(100px,60vw,640px)] h-[clamp(100px,60vw,640px)] rounded-full bg-[rgba(220,226,87,0.35)] blur-[60px] md:top-[120px] md:left-[5vw] pointer-events-none;
+    }
+
+    &__bg {
+        @apply 
+            grid-layout
+            absolute
+            -z-1
+            top-0
+            left-0
+            w-full
+            h-full
+            md:h-[60%]
+            lg_min:h-[calc(100%_-_80px)];
+            
+            div {
+                @apply             
+                    grid-span-xl 
+                    grid 
+                    grid-cols-10 
+                    w-full 
+                    h-full
+                    bg-[rgba(220,226,87,0.35)]
+                    md:grid-cols-8
+                    md:col-start-1
+                    md:col-end-11
+                    md_min:col-start-3
+                    md_min:col-end-13;                
+            }
+    }
+
+    &__container {
+        @apply 
+            grid-span-xl 
+            grid 
+            grid-cols-10 
+            w-full 
+            md:grid-cols-8
+    }
+
+}
