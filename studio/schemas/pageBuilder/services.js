@@ -1,9 +1,9 @@
 import {defineField, defineType} from 'sanity'
 
-export const listType = defineType({
+export const servicesType = defineType({
   type: 'object',
-  name: 'list',
-  title: 'List',
+  name: 'services',
+  title: 'Services',
   fields: [
     defineField({
       type: 'string',
@@ -37,6 +37,19 @@ export const listType = defineType({
           fields: [
             { type: "string", name: "title" },
             { type: "text", name: "content", rows: 3 },
+            {
+                name: "image",
+                title: "Image",
+                type: "image",
+                description: "Recommended Image Dimensions: 508x960",
+                fields: [
+                  {
+                    name: "alt",
+                    type: "string",
+                    title: "Alternative text",
+                  },
+                ],
+            }               
           ]
         }
       ],

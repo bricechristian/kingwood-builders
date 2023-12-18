@@ -6,7 +6,7 @@ package = "@netlify/plugin-sitemap"
   exclude = [
     # By Glob pattern
     '*admin',
-    'https://kingwoodbuilders.com/sample-page',
-    'https://kingwoodbuilders.com/home',
-    'https://kingwoodbuilders.com/landing'
+    '*sample-page',
+    '*home',
+    '*landing'
   ]

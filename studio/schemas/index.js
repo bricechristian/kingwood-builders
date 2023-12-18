@@ -8,7 +8,7 @@ import page from "./page";
 import menu from "./menu";
 import menuItem from "./menuItem";
 
-import { heroType, textHeadlineType, textImageType, listType, cardsType, teamType, stepsType, ctaLargeTextType, projectCarouselType } from "./pageBuilder";
+import { heroType, textHeadlineType, textImageType, listType, servicesType, cardsType, teamType, stepsType, ctaLargeTextType, projectCarouselType } from "./pageBuilder";
 
 export const schemaTypes = [
 	author,
@@ -21,6 +21,7 @@ export const schemaTypes = [
 	textHeadlineType,
 	textImageType,
 	listType,
+	servicesType,
 	cardsType,
 	teamType,
 	stepsType,

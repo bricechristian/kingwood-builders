@@ -29,10 +29,8 @@ export default defineType({
         title: 'Page Builder',
         of: [
           defineArrayMember({type: 'hero'}),
-          defineArrayMember({type: 'textHeadline'}),
           defineArrayMember({type: 'textImage'}),
-          defineArrayMember({type: 'list'}),
-          defineArrayMember({type: 'cards'}),
+          defineArrayMember({type: 'services'}),
           defineArrayMember({type: 'team'}),
           defineArrayMember({type: 'steps'}),
           defineArrayMember({type: 'ctaLargeText'}),
