@@ -14,7 +14,6 @@
     "@astrojs/partytown": "^1.2.0",
     "@astrojs/sitemap": "^1.2.1",
     "@astrojs/tailwind": "^3.1.1",
-    "@astrojs/upgrade": "^0.2.1",
     "@astrojs/vercel": "^3.2.1",
     "@sanity/eventsource": "^5.0.0",
     "@sanity/groq-store": "^2.1.0",
