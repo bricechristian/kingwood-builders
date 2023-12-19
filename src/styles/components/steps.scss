@@ -53,7 +53,6 @@
 
         h2 {
             @apply
-                headline-01
                 origin-center
                 lg_min:overflow-visible
                 lg_min:-translate-y-[calc(100%_+_32px)]
@@ -143,7 +142,6 @@
 
             &--text {
                 @apply  
-                    headline-01
                     absolute
                     bottom-10
                     left-0
