@@ -1,8 +1,8 @@
 .ac {
 	&-header {
 		@apply 
-            flex 
-            transition-smooth;
+            flex;
+            transition: 0.3s;
 	}
 	&-panel {
 		@apply 
