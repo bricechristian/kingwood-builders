@@ -46,8 +46,7 @@
         &-header {
             svg,
             path {
-                @apply 
-                    transition-smooth;
+                transition: .3s;
             }
         }
 
@@ -76,8 +75,8 @@
         &-item {
 
             @apply 
-                col-span-3
-                transition-smooth;
+                col-span-3;
+                transition: .3s;
 
             img {
                 @apply 

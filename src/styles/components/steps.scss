@@ -78,10 +78,11 @@
 
             @apply
                 space-y-4
-                transition-smooth
                 lg_min:cursor-pointer
                 lg_min:opacity-30
                 lg_min:col-span-2;
+
+                transition: .3s;
 
             &--active {
                 @apply lg_min:opacity-100;
