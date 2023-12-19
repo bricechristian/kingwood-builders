@@ -41,7 +41,7 @@ const { data } = Astro.props;
     <div class="grid-span-xl"></div>
   </div>
   <div class="grid-layout">
-    <div class="services__container">
+    <div class="services__container grid-span-xl">
       <div class="col-span-full md_min:pr-6 md_min:col-span-5">
         <h2 class="headline-02" data-viewport="typography-shift">
           <span>{data.title}</span>
@@ -169,7 +169,7 @@ const { data } = Astro.props;
         }
       </div>
     </div>
-    <div class="services__cards">
+    <div class="services__cards grid-span-xl ">
       {
         data.listItems.length > 0
           ? data.listItems.map((item, index) => {

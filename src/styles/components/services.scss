@@ -4,7 +4,6 @@
 
     &__container {
         @apply 
-            grid-span-xl 
             grid 
             grid-cols-10 
             w-full 
@@ -69,7 +68,6 @@
 
     &__cards {
         @apply
-            grid-span-xl 
             grid-layout 
             mt-[5vw]
             gap-[5.575vw]

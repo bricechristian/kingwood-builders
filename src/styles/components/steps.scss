@@ -4,7 +4,6 @@
 
     &__container {
         @apply 
-            grid-span-xl 
             grid 
             lg_min:grid-cols-10;
     }
