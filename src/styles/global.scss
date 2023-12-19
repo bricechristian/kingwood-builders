@@ -17,10 +17,10 @@
 		@apply scroll-smooth tracking-tight leading-relaxed;
 	}
 	body {
-		@apply antialiased flex flex-col min-h-screen text-black font-sans font-light;
+		@apply antialiased flex flex-col min-h-screen text-black font-sans font-light overflow-hidden;
 	}
 	main {
-		@apply flex-grow flex flex-col w-full overflow-x-hidden; 
+		@apply flex-grow flex flex-col w-full; 
 	}
 	a {
 		transition: 0.3s;
