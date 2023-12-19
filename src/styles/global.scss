@@ -12,13 +12,13 @@
 // TAILWIND:BASE
 @layer base {
 	html {
-		@apply scroll-smooth tracking-tight leading-normal;
+		@apply scroll-smooth tracking-tight leading-relaxed;
 	}
 	body {
 		@apply antialiased flex flex-col min-h-screen text-black font-sans font-light;
 	}
 	main {
-		@apply flex-grow flex flex-col; 
+		@apply flex-grow flex flex-col w-full overflow-x-hidden; 
 	}
 	a {
 		transition: 0.3s;
@@ -26,10 +26,16 @@
 	// TYPOGRAPHY 
 	.headline {
 		&-01 {
-			@apply text-[clamp(60px,6.5vw,120px)] leading-[.9];
+			@apply text-[clamp(60px,6.5vw,120px)] font-semibold leading-[.9];
 		}
 		&-02 {
-			@apply text-[clamp(48px,5.5vw,90px)] leading-[.9];
+			@apply text-[clamp(48px,5.5vw,90px)] font-semibold leading-[.9];
+		}
+		&-03 {
+			@apply text-[clamp(32px,4.5vw,64px)] font-semibold leading-[.9];
+		}
+		&-04 {
+			@apply text-[clamp(24px,3.75vw,48px)] font-semibold leading-[.9];
 		}
 	}	
 	.caps {
@@ -88,6 +94,9 @@
 	}
 	.grid-layout {
 		@apply grid grid-cols-12 w-full md:grid-cols-10;
+	}
+	.grid-span-full {
+		@apply col-start-1 col-span-full;
 	}
 	.grid-span-xl {
 		@apply col-start-2 col-end-10 md_min:col-end-12;

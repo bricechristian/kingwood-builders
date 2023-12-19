@@ -11,6 +11,7 @@ import { SEO } from "astro-seo";
 import Header from "../components/Header.astro"
 import GridLines from "../components/GridLines.astro";
 import Contact from "../components/Contact.astro";
+import Footer from "../components/Footer.astro";
 
 const global = await useSanityClient().fetch(`*[_type=='global'][0]`);
 const { 
@@ -75,6 +76,7 @@ const {
 			<GridLines />
 			<slot />
 			<Contact />
+			<Footer />
 		</main>
 		<script src="../scripts/global.js"></script>
 	</body>

@@ -18,6 +18,7 @@
     "@sanity/eventsource": "^5.0.0",
     "@sanity/groq-store": "^2.1.0",
     "@splidejs/splide": "^4.1.4",
+    "accordion-js": "^3.3.4",
     "astro": "^2.2.3",
     "astro-hover-prefetch": "^1.0.6",
     "astro-portabletext": "^0.9.6",

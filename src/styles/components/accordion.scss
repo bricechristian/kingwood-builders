@@ -1,0 +1,26 @@
+.ac {
+	&-header {
+		@apply 
+            flex 
+            transition-smooth;
+	}
+	&-panel {
+		@apply 
+            overflow-hidden 
+            h-0;
+	}
+	&-trigger {
+		@apply 
+            w-full 
+            text-left 
+            outline-none;
+		& > span + span {
+			@apply rotate-180;
+		}
+	}
+    &--open {
+        .ac-panel {
+            height: auto !important;
+        }
+    }
+}

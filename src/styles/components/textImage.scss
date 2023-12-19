@@ -1,29 +1,32 @@
 .text-image {
 
-    @apply relative overflow-x-hidden;
-
-    &__blur {
-        // @apply absolute top-[60px] -right-[18vw] w-[clamp(100px,60vw,640px)] h-[clamp(100px,60vw,640px)] rounded-full bg-[rgba(220,226,87,0.35)] blur-[60px] md:top-[120px] md:left-[5vw] pointer-events-none;
-    }
+    @apply relative;
 
     &__bg {
         @apply 
+            pointer-events-none
             absolute
             -z-1
             top-0
-            left-0
-            w-full
+            left-auto
+            -right-20
+            w-[80%]
             h-full
-            md:h-[60%]
-            lg_min:h-[calc(100%_-_80px)];
+            lg:h-[90%]
+            lg:-right-10
+            lg:w-[calc(100%_+_5rem)]
+            lg_min:-top-[10vw];
             
             div {
-                @apply             
+                @apply     
+                    pointer-events-none
+                    absolute                  
                     grid 
                     grid-cols-10 
                     w-full 
                     h-full
-                    bg-[rgba(220,226,87,0.35)]
+                    bg-[rgba(220,226,87,0.65)]
+                    blur-[60px]
                     md:grid-cols-8
                     md:col-start-1
                     md:col-end-11

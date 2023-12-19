@@ -1,16 +1,175 @@
 ---
+import { urlForImage } from "../utilities/sanityImage.js";
+
+import "../styles/components/steps.scss";
 
 const { data } = Astro.props;
 ---
 
-<section class="py-40">
-    <div class="grid-layout text-center">
-        <div class="grid-span-xl">
-            <h1
-                class="justify-center"
-                data-viewport="typography-shift">
-                <span>{data.title}</span>
-            </h1>
+<style
+  define:vars={{
+    paddingTop: `${data.utilities.paddingTop}px`,
+    paddingTopTablet: `${data.utilities.paddingTopTablet}px`,
+    paddingTopMobile: `${data.utilities.paddingTopMobile}px`,
+    paddingBottom: `${data.utilities.paddingBottom}px`,
+    paddingBottomTablet: `${data.utilities.paddingBottomTablet}px`,
+    paddingBottomMobile: `${data.utilities.paddingBottomMobile}px`,
+  }}
+>
+  section {
+    padding-top: var(--paddingTop);
+    padding-bottom: var(--paddingBottom);
+  }
+  @media (max-width: 991px) {
+    section {
+      padding-top: var(--paddingTopTablet);
+      padding-bottom: var(--paddingBottomTablet);
+    }
+  }
+  @media (max-width: 767px) {
+    section {
+      padding-top: var(--paddingTopMobile);
+      padding-bottom: var(--paddingBottomMobile);
+    }
+  }
+</style>
+
+<section id="process" class="steps">
+  <div class="steps__bg grid-layout" data-viewport="fade-in">
+    <div class="grid-span-xl"></div>
+  </div>
+  <div class="grid-layout">
+    <div class="steps__container">
+      <div class="steps__title">
+        <h2 class="headline-02" data-viewport="typography-shift">
+          <span>{data.title}</span>
+        </h2>
+      </div>
+      <div class="steps__details">
+        {
+          data.steps.length > 0
+            ? data.steps.map((step, index) => {
+                return (
+                  <div class={`steps__details-item${index === 0 ? " steps__details-item--active" : ""}`} data-index={index+1}>
+                    <p class="headline-04">{`0${index + 1}`}</p>
+                    <h3 class="headline-03">{step.title}</h3>
+                    <p class="text-14">{step.content}</p>
+                  </div>
+                );
+              })
+            : ""
+        }
+      </div>
+      <div class="steps__details-carousel splide">
+        <div class="splide__track">
+          <ul class="splide__list">
+            {
+              data.steps.map((step, index) => {
+                return (
+                  <div class="splide__slide">
+                    <picture data-viewport="fade-in" data-viewport-delay=".45">
+                      <source
+                        srcset={urlForImage(step.image.asset)
+                          .width(1400)
+                          .format("webp")
+                          .quality(80)
+                          .url()}
+                        type="image/webp"
+                        media="(min-width: 1200px)"
+                      />
+                      <source
+                        srcset={urlForImage(step.image.asset)
+                          .width(1200)
+                          .format("webp")
+                          .quality(80)
+                          .url()}
+                        type="image/webp"
+                        media="(min-width: 768px)"
+                      />
+                      <source
+                        srcset={urlForImage(step.image.asset)
+                          .width(800)
+                          .format("webp")
+                          .quality(80)
+                          .url()}
+                        type="image/webp"
+                        media="(min-width: 479px)"
+                      />
+                      <source
+                        srcset={urlForImage(step.image.asset)
+                          .width(600)
+                          .format("webp")
+                          .url()}
+                        type="image/webp"
+                        media="(max-width: 478px)"
+                      />
+                      <img
+                        src={urlForImage(step.image.asset)
+                          .width(1400)
+                          .quality(80)
+                          .url()}
+                        width="245"
+                        height="480"
+                        alt={step.image.alt}
+                        srcset={`${urlForImage(step.image.asset)
+                          .width(600)
+                          .quality(80)
+                          .url()} 479w,
+                                ${urlForImage(step.image.asset)
+                                  .width(1200)
+                                  .quality(80)
+                                  .url()} 768w,
+                                ${urlForImage(step.image.asset)
+                                  .width(1400)
+                                  .quality(80)
+                                  .url()} 1200w`}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 1400px, 1920px"
+                      />
+                    </picture>
+                  </div>
+                );
+              })
+            }
+          </ul>
         </div>
+		{data.steps.length > 1 ? (
+			<div class="steps__details-index grid-layout">
+				<div class="steps__details-index--text">
+					<span>01</span>
+				</div>
+			</div>
+		) : ""}        
+      </div>
     </div>
+  </div>
 </section>
+
+<script>
+	import Splide from "@splidejs/splide";
+
+    var splide = new Splide(".steps__details-carousel", {
+		type: "fade",
+		pagination: true,
+		arrows: false,
+	})
+		.on("move", function (newIndex) {
+			if(document.querySelector(".steps__details-index--text") !== null){
+				document.querySelector(
+					".steps__details-index--text span"
+				).textContent = `${newIndex + 1 < 10 ? "0" : ""}${
+					newIndex + 1
+				}`;
+			}
+            document.querySelectorAll(".steps__details-item").forEach($item => {
+                $item.classList.remove("steps__details-item--active");
+            })
+            document.querySelector(`.steps__details-item[data-index="${newIndex+1}"]`).classList.add("steps__details-item--active")
+		})
+		.mount();
+
+        document.querySelectorAll(".steps__details-item").forEach(($item, i) => {
+            $item.addEventListener("click", () => {
+                splide.go(i)
+            })
+        })        
+</script>

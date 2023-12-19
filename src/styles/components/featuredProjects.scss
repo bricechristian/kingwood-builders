@@ -1,15 +1,25 @@
 .featured-projects {
 
-    @apply flex flex-col flex-grow md:mb-12;
+    @apply 
+        flex 
+        flex-col 
+        flex-grow 
+        md:mb-12;
 
     &__container {
 
-        @apply flex flex-grow md:flex-col;
+        @apply 
+            flex 
+            flex-grow 
+            md:flex-col;
 
     }
 
     .splide__track {
-        @apply flex flex-col flex-grow;       
+        @apply 
+            flex 
+            flex-col 
+            flex-grow;       
     }
 
     .splide__list {
@@ -18,11 +28,21 @@
 
     .splide__pagination {
         
-        @apply absolute right-[8.25vw] top-1/2 z-50 gap-2 flex-col;
+        @apply 
+            absolute 
+            right-[8.25vw] 
+            top-1/2 
+            z-50 
+            gap-2 
+            flex-col;
 
         button {
 
-            @apply w-3.5 h-3.5 border rounded-full;
+            @apply 
+                w-3.5 
+                h-3.5 
+                border 
+                rounded-full;
 
             &.is-active {
                 @apply bg-black;
@@ -33,32 +53,75 @@
     }
 
     &__blur {
-        @apply absolute top-[1vw] -left-[3vw] w-[clamp(200px,30vw,30vw)] h-[clamp(200px,30vw,30vw)] rounded-full bg-[rgba(220,226,87,0.65)] blur-[60px] md:top-[120px] md:left-[5vw] pointer-events-none;
+        @apply 
+            absolute 
+            top-[1vw] 
+            -left-[3vw] 
+            w-[clamp(200px,30vw,30vw)] 
+            h-[clamp(200px,30vw,30vw)] 
+            rounded-full 
+            bg-[rgba(220,226,87,0.65)] 
+            blur-[60px] 
+            md:top-[240px] 
+            md:-left-[5vw] 
+            pointer-events-none;
     }
 
     &__item {
 
-        @apply flex;
+        @apply 
+            flex
+            md_min:min-h-screen;
 
         &-grid {
 
-            @apply flex-grow grid-rows-[auto_1fr];
+            @apply 
+                flex-grow 
+                grid-rows-[auto_1fr];
 
             &--text {
 
-                @apply flex flex-col pt-32 col-start-2 col-span-10 relative z-30 md_min:col-end-8 md:order-2 md:pt-0 md:-mt-12 md:pr-[10vw];
+                @apply 
+                    flex 
+                    flex-col 
+                    pt-32 
+                    col-start-2 
+                    col-span-10 
+                    relative 
+                    z-30 
+                    md_min:col-end-8 
+                    md:order-2 
+                    md:pt-0 
+                    md:-mt-12 
+                    md:pr-[10vw];
 
                 h1 {
-                    @apply relative z-20 md:pr-12 xs:pr-0;
+                    @apply 
+                        relative 
+                        z-20 
+                        md:pr-12 
+                        xs:pr-0;
                 }
 
                 hr {
-                    @apply relative z-30;
+                    @apply 
+                        relative 
+                        z-30;
                 }
 
                 .rte {
 
-                    @apply relative z-20 max-w-xs mt-2 pb-4 sm:text-14 xs:text-[13px] sm:pr-8 sm:pb-2 xs:pb-1;
+                    @apply 
+                        relative 
+                        z-20 
+                        max-w-xs 
+                        mt-2 
+                        pb-4 
+                        sm:text-14 
+                        xs:text-[13px] 
+                        sm:pr-8 
+                        sm:pb-2 
+                        xs:pb-1;
 
                 }
 
@@ -66,12 +129,40 @@
 
             &--image {
 
-                @apply relative overflow-hidden col-start-3 col-span-10 md_min:absolute md_min:top-0 md_min:right-0 md_min:w-[66.666vw] md_min:h-screen md:mt-0 md:order-1 md:min-h-[66vw] sm:min-h-[90vw] xs:min-h-[70vw];
+                @apply 
+                    relative 
+                    overflow-hidden 
+                    col-start-3 
+                    col-span-10 
+                    md_min:absolute 
+                    md_min:top-0 
+                    md_min:right-0 
+                    md_min:w-[66.666vw] 
+                    md_min:h-full 
+                    md:mt-0 
+                    md:order-1 
+                    md:min-h-[66vw] 
+                    sm:min-h-[90vw] 
+                    xs:min-h-[70vw];
+
+                    img {
+                        @apply h-full;
+                    }
 
                 picture:before {
                     content: "";
-                    @apply inline-block absolute top-0 left-0 w-full h-full z-[11];
-                    background: rgba(235,234,223,0.4);
+                    @apply 
+                        inline-block 
+                        absolute 
+                        top-0 
+                        left-0 
+                        w-full 
+                        h-full 
+                        z-[11];
+                    background: rgba(235,234,223,0.1);
+                    @media (max-width: 1300px){
+                        background: rgba(235,234,223,0.4);
+                    }
                 }
 
             }
@@ -82,16 +173,27 @@
 
     &__index {
 
-        @apply absolute z-50 bottom-8 right-[10vw] text-right pointer-events-none;
+        @apply 
+            absolute 
+            z-50 
+            bottom-8 
+            right-[10vw] 
+            text-right 
+            pointer-events-none;
 
         @screen md {
             display: none !important;
         }
 
         &--text {
-            @apply flex col-start-9 text-[clamp(90px,12.5vw,160px)] leading-[.9] font-medium text-transparent;
-            -webkit-text-stroke: theme("colors.black");
-            -webkit-text-stroke-width: 2px;
+            @apply 
+                flex 
+                col-start-9 
+                text-[clamp(90px,12.5vw,160px)] 
+                leading-[.9] 
+                font-medium;
+            // -webkit-text-stroke: theme("colors.black");
+            // -webkit-text-stroke-width: 2px;
         }
 
     }

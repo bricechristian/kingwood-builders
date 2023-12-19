@@ -17,23 +17,23 @@ const { data } = Astro.props;
 }}>  
     section {
         padding-top: var(--paddingTop);
-        padding-top: var(--paddingBottom);
+        padding-bottom: var(--paddingBottom);
     }
     @media (max-width: 991px){
         section {
             padding-top: var(--paddingTopTablet);
-            padding-top: var(--paddingBottomTablet);
+            padding-bottom: var(--paddingBottomTablet);
         }        
     }
     @media (max-width: 767px){
         section {
             padding-top: var(--paddingTopMobile);
-            padding-top: var(--paddingBottomMobile);
+            padding-bottom: var(--paddingBottomMobile);
         }
     }
 </style>
 
-<section class="text-image">
+<section id="about" class="text-image">
     <div class="text-image__bg grid-layout" data-viewport="fade-in">
         <div class="grid-span-xl"></div>
     </div>
@@ -134,7 +134,7 @@ const { data } = Astro.props;
                 )}                
             </div>
             <div class="col-span-full md_min:col-span-5 md_min:col-start-6">
-                <div class="space-y-4 md_min:space-y-5 md_min:max-w-[clamp(300px,40vw,580px)]">
+                <div class="space-y-4 md_min:space-y-5 md_min:max-w-[clamp(300px,50vw,780px)]">
                     {data.eyebrow.length ? (
                         <h3
                             class="caps"
@@ -244,7 +244,7 @@ const { data } = Astro.props;
                     )}     
                     {data.bodycopy.length ? (
                         <div 
-                            class="md_min:max-w-sm"
+                            class="md_min:max-w-md"
                             data-viewport="fade-in"
                             data-viewport-delay=".45"                        
                         >
@@ -256,8 +256,3 @@ const { data } = Astro.props;
         </div>
     </div>
 </section>
-
-
-<script define:vars={{ data }}>
-    console.log(data)
-</script>

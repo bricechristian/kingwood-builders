@@ -13,13 +13,13 @@ const { data } = Astro.props;
 		<div class="splide__track">
 			<ul class="splide__list">
 				{
-					data.map((project, index) => {
+					data !== undefined ? data.map((project, index) => {
 						return (
 							<li class="featured-projects__item splide__slide">
 								<div class="featured-projects__item--grid grid-layout">
 									<div class="featured-projects__item-grid--text">
 										<div class="md_min:space-y-2">
-											<h1 class="headline-01" data-viewport="typography-shift">
+											<h1 class="headline-01 pt-1" data-viewport="typography-shift">
 												<span>{project.title}</span>
 											</h1>
 											{project.description?.length ? (
@@ -38,7 +38,7 @@ const { data } = Astro.props;
 											)}
 											{project.specs?.length ? (
 												<div
-													class="rte"
+													class="rte hidden"
 													data-viewport="shift-up"
 													data-viewport-delay=".30">
 													<Fragment
@@ -51,7 +51,7 @@ const { data } = Astro.props;
 												""
 											)}
 											<div
-												class="!mt-6"
+												class="!mt-6 hidden"
 												data-viewport="shift-up"
 												data-viewport-delay=".5">
 												<a href="#" class="button">View Project</a>
@@ -94,7 +94,7 @@ const { data } = Astro.props;
 										{project.featuredImage ? (
 											<picture
 												data-viewport="fade-in"
-												data-viewport-delay=".45">
+												data-viewport-delay=".15">
 												<source
 													srcset={urlForImage(
 														project.featuredImage
@@ -187,39 +187,44 @@ const { data } = Astro.props;
 								</div>
 							</li>
 						);
-					})
+					}) : ""
 				}
 			</ul>
 		</div>
-		<div class="featured-projects__index grid-layout">
-			<div class="featured-projects__index--text">
-				<span>01/</span>
-				<span
-					>{
-						`${data.length < 10 ? "0" : data.length}${
-							data.length
-						}`
-					}</span
-				>
+		{data.length > 1 ? (
+			<div class="featured-projects__index grid-layout">
+				<div class="featured-projects__index--text">
+					<span>01/</span>
+					<span
+						>{
+							`${data.length < 10 ? "0" : data.length}${
+								data.length
+							}`
+						}</span
+					>
+				</div>
 			</div>
-		</div>
+		) : ""}
 	</div>
 </section>
 
 <script>
 	import Splide from "@splidejs/splide";
 
-	new Splide(".splide", {
-		type: "loop",
+	new Splide(".featured-projects", {
+		type: document.querySelector(".featured-projects__index") !== null ? "loop" : "slide",
+		drag: document.querySelector(".featured-projects__index") !== null ? true : false,
 		pagination: true,
 		arrows: false,
 	})
 		.on("move", function (newIndex) {
-			document.querySelectorAll(
-				".featured-projects__index--text span"
-			)[0].textContent = `${newIndex + 1 < 10 ? "0" : ""}${
-				newIndex + 1
-			}/`;
+			if(document.querySelector(".featured-projects__index") !== null){
+				document.querySelectorAll(
+					".featured-projects__index--text span"
+				)[0].textContent = `${newIndex + 1 < 10 ? "0" : ""}${
+					newIndex + 1
+				}/`;
+			}
 		})
 		.mount();
 </script>

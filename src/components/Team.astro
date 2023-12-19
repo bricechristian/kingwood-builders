@@ -1,16 +1,122 @@
 ---
+import { urlForImage } from "../utilities/sanityImage.js";
+
+import "../styles/components/team.scss";
 
 const { data } = Astro.props;
 ---
 
-<section class="py-40">
-    <div class="grid-layout text-center">
-        <div class="grid-span-xl">
-            <h1
-                class="justify-center"
-                data-viewport="typography-shift">
-                <span>{data.title}</span>
-            </h1>
-        </div>
+<style
+  define:vars={{
+    paddingTop: `${data.utilities.paddingTop}px`,
+    paddingTopTablet: `${data.utilities.paddingTopTablet}px`,
+    paddingTopMobile: `${data.utilities.paddingTopMobile}px`,
+    paddingBottom: `${data.utilities.paddingBottom}px`,
+    paddingBottomTablet: `${data.utilities.paddingBottomTablet}px`,
+    paddingBottomMobile: `${data.utilities.paddingBottomMobile}px`,
+  }}
+>
+  section {
+    padding-top: var(--paddingTop);
+    padding-bottom: var(--paddingBottom);
+  }
+  @media (max-width: 991px) {
+    section {
+      padding-top: var(--paddingTopTablet);
+      padding-bottom: var(--paddingBottomTablet);
+    }
+  }
+  @media (max-width: 767px) {
+    section {
+      padding-top: var(--paddingTopMobile);
+      padding-bottom: var(--paddingBottomMobile);
+    }
+  }
+</style>
+
+<section id="team" class="team">
+  <div class="team__bg grid-layout" data-viewport="fade-in">
+    <div class="grid-span-xl"></div>
+  </div>
+  <div class="grid-layout">
+    <div class="grid-span-xl">
+      <h2 class="headline-02 justify-center" data-viewport="typography-shift">
+        <span>{data.title}</span>
+      </h2>
     </div>
+    {
+      data.team.length > 0 ? (
+        <div class="team__members">
+          {data.team.map((item, index) => {
+            return (
+              <div class="team__members-item">
+                <picture data-viewport="fade-in" data-viewport-delay=".45">
+                  <source
+                    srcset={urlForImage(item.picture.asset)
+                      .width(800)
+                      .format("webp")
+                      .quality(80)
+                      .url()}
+                    type="image/webp"
+                    media="(min-width: 1200px)"
+                  />
+                  <source
+                    srcset={urlForImage(item.picture.asset)
+                      .width(600)
+                      .format("webp")
+                      .quality(80)
+                      .url()}
+                    type="image/webp"
+                    media="(min-width: 768px)"
+                  />
+                  <source
+                    srcset={urlForImage(item.picture.asset)
+                      .width(400)
+                      .format("webp")
+                      .quality(80)
+                      .url()}
+                    type="image/webp"
+                    media="(min-width: 479px)"
+                  />
+                  <source
+                    srcset={urlForImage(item.picture.asset)
+                      .width(400)
+                      .format("webp")
+                      .url()}
+                    type="image/webp"
+                    media="(max-width: 478px)"
+                  />
+                  <img
+                    src={urlForImage(item.picture.asset)
+                      .width(800)
+                      .quality(80)
+                      .url()}
+                    width="245"
+                    height="480"
+                    alt={item.picture.alt}
+                    srcset={`${urlForImage(item.picture.asset)
+                      .width(400)
+                      .quality(80)
+                      .url()} 479w,
+                                ${urlForImage(item.picture.asset)
+                                  .width(600)
+                                  .quality(80)
+                                  .url()} 768w,
+                                ${urlForImage(item.picture.asset)
+                                  .width(800)
+                                  .quality(80)
+                                  .url()} 1200w`}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 1400px, 1920px"
+                  />
+                </picture>
+                <h3 class="caps mt-2 md:text-12">{item.name}</h3>
+              </div>
+            );
+          })}
+        </div>
+      ) : (
+        ""
+      )
+    }
+  </div>
 </section>

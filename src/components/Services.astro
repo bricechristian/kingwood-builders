@@ -1,42 +1,273 @@
 ---
+import { PortableText } from "astro-portabletext";
+import { urlForImage } from "../utilities/sanityImage.js";
+
+import "../styles/components/accordion.scss";
+import "../styles/components/services.scss";
 
 const { data } = Astro.props;
 ---
 
-<style define:vars={{ 
+<style
+  define:vars={{
     paddingTop: `${data.utilities.paddingTop}px`,
     paddingTopTablet: `${data.utilities.paddingTopTablet}px`,
     paddingTopMobile: `${data.utilities.paddingTopMobile}px`,
     paddingBottom: `${data.utilities.paddingBottom}px`,
     paddingBottomTablet: `${data.utilities.paddingBottomTablet}px`,
     paddingBottomMobile: `${data.utilities.paddingBottomMobile}px`,
-}}>  
+  }}
+>
+  section {
+    padding-top: var(--paddingTop);
+    padding-bottom: var(--paddingBottom);
+  }
+  @media (max-width: 991px) {
     section {
-        padding-top: var(--paddingTop);
-        padding-top: var(--paddingBottom);
+      padding-top: var(--paddingTopTablet);
+      padding-bottom: var(--paddingBottomTablet);
     }
-    @media (max-width: 991px){
-        section {
-            padding-top: var(--paddingTopTablet);
-            padding-top: var(--paddingBottomTablet);
-        }        
+  }
+  @media (max-width: 767px) {
+    section {
+      padding-top: var(--paddingTopMobile);
+      padding-bottom: var(--paddingBottomMobile);
     }
-    @media (max-width: 767px){
-        section {
-            padding-top: var(--paddingTopMobile);
-            padding-top: var(--paddingBottomMobile);
-        }
-    }
+  }
 </style>
 
-<section>
-    <div class="grid-layout text-center">
-        <div class="grid-span-xl">
-            <h1
-                class="justify-center"
-                data-viewport="typography-shift">
-                <span>{data.title}</span>
-            </h1>
-        </div>
+<section id="services" class="services">
+  <div class="services__bg grid-layout" data-viewport="fade-in">
+    <div class="grid-span-xl"></div>
+  </div>
+  <div class="grid-layout">
+    <div class="services__container">
+      <div class="col-span-full md_min:pr-6 md_min:col-span-5">
+        <h2 class="headline-02" data-viewport="typography-shift">
+          <span>{data.title}</span>
+        </h2>
+        {
+          data.bodycopy.length ? (
+            <div
+              class="md_min:max-w-md"
+              data-viewport="fade-in"
+              data-viewport-delay=".45"
+            >
+              <PortableText value={data.bodycopy} />
+            </div>
+          ) : (
+            ""
+          )
+        }
+      </div>
+      <div class="col-span-full md_min:col-span-5">
+        {
+          data.listItems.length > 0 ? (
+            <div class="accordion-container divide-y border-y">
+              {data.listItems.map((item, index) => {
+                return (
+                  <div class="ac" data-title={item.title}>
+                    <div class="ac-header">
+                      <button
+                        type="button"
+                        class="ac-trigger w-full grid gap-4 grid-cols-[1fr_20px] items-center py-3"
+                      >
+                        <h3 class="font-semibold text-18">{item.title}</h3>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="#2c2c2c"
+                          stroke="#2c2c2c"
+                          class="w-4 h-4"
+                          viewBox="0 0 1024 1024"
+                        >
+                          <path d="M482 152h60q8 0 8 8v704q0 8-8 8h-60q-8 0-8-8V160q0-8 8-8Z" />
+                          <path d="M176 474h672q8 0 8 8v60q0 8-8 8H176q-8 0-8-8v-60q0-8 8-8Z" />
+                        </svg>
+                      </button>
+                    </div>
+                    <div class="ac-panel">
+                      {item.content !== null ? (
+                        <div class="ac-text pb-4">
+                          <div class="grid md:gap-4 md:grid-cols-7">
+                            <div class="col-span-2 md_min:hidden">
+                              <picture data-viewport="fade-in">
+                                <source
+                                  srcset={urlForImage(item.image.asset)
+                                    .width(800)
+                                    .format("webp")
+                                    .quality(80)
+                                    .url()}
+                                  type="image/webp"
+                                  media="(min-width: 1200px)"
+                                />
+                                <source
+                                  srcset={urlForImage(item.image.asset)
+                                    .width(600)
+                                    .format("webp")
+                                    .quality(80)
+                                    .url()}
+                                  type="image/webp"
+                                  media="(min-width: 768px)"
+                                />
+                                <source
+                                  srcset={urlForImage(item.image.asset)
+                                    .width(400)
+                                    .format("webp")
+                                    .quality(80)
+                                    .url()}
+                                  type="image/webp"
+                                  media="(min-width: 479px)"
+                                />
+                                <source
+                                  srcset={urlForImage(item.image.asset)
+                                    .width(400)
+                                    .format("webp")
+                                    .url()}
+                                  type="image/webp"
+                                  media="(max-width: 478px)"
+                                />
+                                <img
+                                  src={urlForImage(item.image.asset)
+                                    .width(800)
+                                    .quality(80)
+                                    .url()}
+                                  width="245"
+                                  height="480"
+                                  alt={item.image.alt}
+                                  srcset={`${urlForImage(item.image.asset)
+                                    .width(400)
+                                    .quality(80)
+                                    .url()} 479w,
+                                ${urlForImage(item.image.asset)
+                                  .width(600)
+                                  .quality(80)
+                                  .url()} 768w,
+                                ${urlForImage(item.image.asset)
+                                  .width(800)
+                                  .quality(80)
+                                  .url()} 1200w`}
+                                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 1400px, 1920px"
+                                />
+                              </picture>
+                            </div>
+                            <div class="md:col-span-5 md:text-14 sm:text-12">
+                              {item.content}
+                            </div>
+                          </div>
+                        </div>
+                      ) : (
+                        ""
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            ""
+          )
+        }
+      </div>
     </div>
+    <div class="services__cards">
+      {
+        data.listItems.length > 0
+          ? data.listItems.map((item, index) => {
+              return (
+                <div class="services__cards-item" data-title={item.title}>
+                  <div>
+                    <picture data-viewport="fade-in" data-viewport-delay=".45">
+                      <source
+                        srcset={urlForImage(item.image.asset)
+                          .width(800)
+                          .format("webp")
+                          .quality(80)
+                          .url()}
+                        type="image/webp"
+                        media="(min-width: 1200px)"
+                      />
+                      <source
+                        srcset={urlForImage(item.image.asset)
+                          .width(600)
+                          .format("webp")
+                          .quality(80)
+                          .url()}
+                        type="image/webp"
+                        media="(min-width: 768px)"
+                      />
+                      <source
+                        srcset={urlForImage(item.image.asset)
+                          .width(400)
+                          .format("webp")
+                          .quality(80)
+                          .url()}
+                        type="image/webp"
+                        media="(min-width: 479px)"
+                      />
+                      <source
+                        srcset={urlForImage(item.image.asset)
+                          .width(400)
+                          .format("webp")
+                          .url()}
+                        type="image/webp"
+                        media="(max-width: 478px)"
+                      />
+                      <img
+                        src={urlForImage(item.image.asset)
+                          .width(800)
+                          .quality(80)
+                          .url()}
+                        width="245"
+                        height="480"
+                        alt={item.image.alt}
+                        srcset={`${urlForImage(item.image.asset)
+                          .width(400)
+                          .quality(80)
+                          .url()} 479w,
+                                ${urlForImage(item.image.asset)
+                                  .width(600)
+                                  .quality(80)
+                                  .url()} 768w,
+                                ${urlForImage(item.image.asset)
+                                  .width(800)
+                                  .quality(80)
+                                  .url()} 1200w`}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 1400px, 1920px"
+                      />
+                    </picture>
+                    <p class="caps mt-2">{item.title}</p>
+                  </div>
+                </div>
+              );
+            })
+          : ""
+      }
+    </div>
+  </div>
 </section>
+
+<script>
+  import Accordion from "accordion-js";
+
+  new Accordion(".services .accordion-container", {
+    beforeOpen: (currElement) => {
+      document
+        .querySelector(".services .services__cards")
+        .classList.add("services__cards--has-active-card");
+      let activeTitle = currElement.getAttribute("data-title");
+      document.querySelectorAll(".services__cards-item").forEach(($card) => {
+        $card.classList.remove("services__cards-item--active");
+      });
+      document
+        .querySelector(`.services__cards-item[data-title="${activeTitle}"]`)
+        .classList.add("services__cards-item--active");
+    },
+    beforeClose: (currElement) => {
+      if (document.querySelector(".services .ac.is-active") === null) {
+        document
+          .querySelector(".services .services__cards")
+          .classList.remove("services__cards--has-active-card");
+      }
+    },
+  });
+</script>

@@ -42,6 +42,7 @@ const data = responseJSON === undefined ? await useSanityClient().fetch(`
 	...,
 	content[] {
 		...,
+        team[]->,
         projects[]->
 	}	
 }
@@ -101,6 +102,6 @@ if (!data) return Astro.redirect("/404");
 	}
 </Layout>
 
-<script define:vars={{ data }}>
+<!-- <script define:vars={{ data }}>
     console.log(data.content)
-</script>
+</script> -->

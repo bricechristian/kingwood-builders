@@ -4,7 +4,12 @@ import { useSanityClient } from "astro-sanity";
 import { urlForImage } from "../utilities/sanityImage.js";
 
 import Layout from "../layouts/Layout.astro";
-import Hero from "../components/Hero.astro";
+import FeaturedProjects from "../components/FeaturedProjects.astro"
+import TextImage from "../components/TextImage.astro"
+import Services from "../components/Services.astro"
+import Team from "../components/Team.astro"
+import Steps from "../components/Steps.astro"
+import CtaLargeText from "../components/CtaLargeText.astro"
 
 export const prerender = true;
 
@@ -17,17 +22,19 @@ export const prerender = true;
 // console.log(responseJSON)
 // data = responseJSON.data;
 const data = await useSanityClient().fetch(`
-	*[_type=='page' && slug.current == "landing"][0] {
+	*[_type=='page' && slug.current == "home"][0] {
 	..., 
 	content[] {
-		...
+		...,
+        team[]->,
+        projects[]->
 	}	
 	}
 `);
 
 const { content } = data;
 
-const featuredImage = content[0].images[0];
+// const featuredImage = content[0].images[0];
 
 ---
 
@@ -56,138 +63,48 @@ const featuredImage = content[0].images[0];
 </style>
 
 <Layout title={data.settings.ogTitle} description={data.settings.ogDescription}>
-	<section class="flex flex-col flex-grow">
-		<div class="grid-layout flex-grow grid-rows-[auto_1fr]">
-			<div
-				class="pt-32 col-start-2 col-span-10 md_min:space-y-4 md:order-2 md:pt-0 md:-mt-12"
-			>
-				<h1
-					class="text-[clamp(40px,6.5vw,120px)] leading-[.9] relative z-20 md:pr-12 xs:pr-0"
-				>
-					<span
-						class="block pt-16 -mt-16"
-						data-viewport="typography-shift"
-						data-viewport-delay=".15"
-					>
-						<span
-							>Developing <span id="dreams">dreams</span>
-							<span class="font-medium">together.</span></span
-						>
-					</span>
-				</h1>
-				<p
-					class="relative z-20 max-w-md mt-2 pr-12 shift-up sm:text-14 xs:text-[13px] sm:pr-8"
-					data-viewport="shift-up"
-					data-viewport-delay=".25"					
-				>
-					Kingwood Builders is a custom builder and whole house remodeling company that specializes in fine craftsmanship work in Charleston, South Carolina and Wilmington, North Carolina. We utilize the latest building techniques with extensive research to build efficient, healthy, and long-lasting homes.
-				</p>
-				<div 
-				class="shift-up relative z-20" 
-				data-viewport="shift-up"
-				data-viewport-delay=".3">
-					<a href="#" class="contact-trigger button mt-4"
-						>Contact Us</a
-					>
-				</div>
-			</div>
-			<div
-				class="absolute top-[180px] left-[7vw] w-[clamp(200px,30vw,30vw)] h-[clamp(200px,30vw,30vw)] rounded-full bg-[rgba(220,226,87,0.65)] blur-[60px] md:top-[120px] md:left-[5vw] fade-in"
-			>
-			</div>
-			<div
-				class="relative overflow-hidden col-start-3 col-span-10 -mt-[340px] md:mt-0 md:order-1 md:min-h-[66vw] sm:min-h-[90vw] xs:min-h-[70vw]"
-			>
-				<div
-					class="grid grid-cols-10 w-full absolute z-20 bottom-20 right-6 sm:bottom-6"
-				>
-					<div class="col-start-10">
-						<div class="-rotate-90 origin-left relative">
-							<div
-								class="absolute top-full right-0 w-full font-medium text-20 whitespace-nowrap sm:text-14"
-								data-viewport="fade-in"
-								data-viewport-delay=".25"
-							>
-								Charleston, SC
-							</div>
-						</div>
-					</div>
-				</div>
-				<picture data-viewport="fade-in">
-					<source
-						srcset={urlForImage(featuredImage.asset)
-							.width(1800)
-							.format("webp")
-							.quality(80)
-							.url()}
-						type="image/webp"
-						media="(min-width: 1200px)"
-					/>
-					<source
-						srcset={urlForImage(featuredImage.asset)
-							.width(1200)
-							.format("webp")
-							.quality(80)
-							.url()}
-						type="image/webp"
-						media="(min-width: 768px)"
-					/>
-					<source
-						srcset={urlForImage(featuredImage.asset)
-							.width(850)
-							.format("webp")
-							.quality(80)
-							.url()}
-						type="image/webp"
-						media="(min-width: 479px)"
-					/>
-					<source
-						srcset={urlForImage(featuredImage.asset)
-							.width(650)
-							.format("webp")
-							.url()}
-						type="image/webp"
-						media="(max-width: 478px)"
-					/>
-					<img
-						class={`w-full h-full object-cover absolute z-10 scale-in`}
-						data-delay=".25"
-						src={urlForImage(featuredImage.asset)
-							.width(800)
-							.quality(80)
-							.url()}
-						width="1920"
-						height="1080"
-						alt={featuredImage.alt}
-						srcset={`${urlForImage(featuredImage.asset)
-							.width(800)
-							.quality(80)
-							.url()} 479w,
-						${urlForImage(featuredImage.asset).width(1200).quality(80).url()} 768w,
-						${urlForImage(featuredImage.asset).width(1800).quality(80).url()} 1200w`}
-						sizes="(max-width: 768px) 100vw, (max-width: 1200px) 1400px, 1920px"
-					/>
-				</picture>
-			</div>
-		</div>
-	</section>
-</Layout>
-
-<script>
-	import { annotate } from "rough-notation";
-	const el = document.getElementById("dreams");
-	let strokeWidth = 6;
-	if (window.innerWidth < 767) {
-		strokeWidth = 3;
+	{
+		data.content?.map((section) => {
+			switch (section._type) {
+				case "projectCarousel":
+                    return (
+                        <FeaturedProjects data={section.projects} /> 
+                    )
+				case "textImage":
+                    return (
+                        <TextImage data={section} /> 
+                    )
+                case "services":
+                    return (
+                        <Services data={section} /> 
+                    )
+				case "team":
+                    return (
+                        <Team data={section} /> 
+                    )
+				case "steps":
+                    return (
+                        <Steps data={section} /> 
+                    )
+				case "ctaLargeText":
+                    return (
+                        <CtaLargeText data={section} /> 
+                    )
+				default:
+                    return (
+                        <section class="py-40">
+                            <div class="grid-layout text-center">
+                                <div class="grid-span-xl">
+                                    <h1
+                                        class="justify-center"
+                                        data-viewport="typography-shift">
+                                        <span>{data.title}</span>
+                                    </h1>
+                                </div>
+                            </div>
+                        </section>
+                    )
+			}
+		})
 	}
-	const annotation = annotate(el, {
-		type: "underline",
-		color: "#2c2c2c",
-		padding: 0,
-		iterations: 4,
-		strokeWidth,
-	});
-	setTimeout(() => {
-		annotation.show();
-	}, 650);
-</script>
+</Layout>
